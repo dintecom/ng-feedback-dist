@@ -82,7 +82,8 @@
                 height: document.documentElement.clientHeight,
                 x: document.documentElement.scrollLeft,
                 y: document.documentElement.scrollTop,
-                allowTaint: true
+                allowTaint: true,
+                useCORS: true
             }).then((/**
              * @param {?} bodyCanvas
              * @return {?}
