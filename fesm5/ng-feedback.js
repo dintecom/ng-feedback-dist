@@ -1255,5 +1255,5 @@ var FeedbackModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FeedbackModule, FeedbackDialogComponent as ɵa, FeedbackService as ɵb, FeedbackToolbarComponent as ɵc, FeedbackRectangleComponent as ɵd, FeedbackDirective as ɵe };
+export { Feedback, FeedbackModule, FeedbackDialogComponent as ɵa, FeedbackService as ɵb, FeedbackToolbarComponent as ɵc, FeedbackRectangleComponent as ɵd, FeedbackDirective as ɵe };
 //# sourceMappingURL=ng-feedback.js.map

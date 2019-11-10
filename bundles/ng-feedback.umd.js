@@ -1238,6 +1238,7 @@
         return FeedbackModule;
     }());
 
+    exports.Feedback = Feedback;
     exports.FeedbackModule = FeedbackModule;
     exports.ɵa = FeedbackDialogComponent;
     exports.ɵb = FeedbackService;
