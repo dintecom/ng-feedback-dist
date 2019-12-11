@@ -735,7 +735,7 @@ class FeedbackToolbarComponent {
         const elStyle = this.el.nativeElement.style;
         elStyle.position = 'absolute';
         elStyle.left = '43%';
-        elStyle.top = '60%';
+        elStyle.top = '1em';
         this.addDragListenerOnMoveBtn();
     }
     /**
