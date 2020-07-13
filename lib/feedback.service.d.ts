@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import { Feedback } from './entity/feedback';
+import * as i0 from "@angular/core";
 export declare class FeedbackService {
     initialVariables: object;
     highlightedColor: string;
@@ -17,4 +18,6 @@ export declare class FeedbackService {
     getImgEle(canvas: any): HTMLElement;
     hideBackDrop(): void;
     showBackDrop(): void;
+    static ɵfac: i0.ɵɵFactoryDef<FeedbackService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<FeedbackService>;
 }

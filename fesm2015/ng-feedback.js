@@ -1,62 +1,28 @@
-import { Injectable, Component, ChangeDetectorRef, ElementRef, ViewChild, HostListener, EventEmitter, Input, Output, Directive, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDialogRef, MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ɵɵdefineInjectable, ɵsetClassMetadata, Injectable, ɵɵnamespaceSVG, ɵɵelementStart, ɵɵelement, ɵɵelementEnd, ɵɵnextContext, ɵɵproperty, ɵɵpureFunction1, EventEmitter, ɵɵdirectiveInject, ElementRef, ɵɵdefineComponent, ɵɵstaticViewQuery, ɵɵqueryRefresh, ɵɵloadQuery, ɵɵNgOnChangesFeature, ɵɵnamespaceHTML, ɵɵlistener, ɵɵtemplate, ɵɵtext, ɵɵadvance, ɵɵtextInterpolate, Component, Input, Output, ViewChild, ɵɵgetCurrentView, ɵɵrestoreView, ɵɵpureFunction4, ɵɵpureFunction3, HostListener, ɵɵtextInterpolate1, ChangeDetectorRef, ɵɵviewQuery, ɵɵresolveDocument, ɵɵdefineDirective, Directive, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
+import { NgClass, NgIf, NgStyle, NgForOf, CommonModule } from '@angular/common';
+import { DefaultValueAccessor, NgControlStatus, NgModel, FormsModule } from '@angular/forms';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogRef, MatDialogActions, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { Subject, fromEvent } from 'rxjs';
 import { mergeMap, map, finalize, takeUntil } from 'rxjs/operators';
 import html2canvas from 'html2canvas';
 import { Overlay } from '@angular/cdk/overlay';
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class Feedback {
 }
-if (false) {
-    /** @type {?} */
-    Feedback.prototype.description;
-    /** @type {?} */
-    Feedback.prototype.screenshot;
-}
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class Rectangle {
     constructor() {
         this.windowScrollY = window.scrollY;
         this.windowScrollX = window.scrollX;
     }
 }
-if (false) {
-    /** @type {?} */
-    Rectangle.prototype.startX;
-    /** @type {?} */
-    Rectangle.prototype.startY;
-    /** @type {?} */
-    Rectangle.prototype.width;
-    /** @type {?} */
-    Rectangle.prototype.height;
-    /** @type {?} */
-    Rectangle.prototype.color;
-    /** @type {?} */
-    Rectangle.prototype.windowScrollY;
-    /** @type {?} */
-    Rectangle.prototype.windowScrollX;
-}
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class FeedbackService {
     constructor() {
         this.initialVariables = {};
@@ -69,11 +35,7 @@ class FeedbackService {
         this.isDraggingToolbarSource = new Subject();
         this.isDraggingToolbar$ = this.isDraggingToolbarSource.asObservable();
     }
-    /**
-     * @return {?}
-     */
     initScreenshotCanvas() {
-        /** @type {?} */
         const body = document.body;
         html2canvas(body, {
             logging: false,
@@ -83,44 +45,21 @@ class FeedbackService {
             y: document.documentElement.scrollTop,
             allowTaint: true,
             useCORS: true
-        }).then((/**
-         * @param {?} bodyCanvas
-         * @return {?}
-         */
-        bodyCanvas => {
+        }).then(bodyCanvas => {
             this.screenshotCanvasSource.next(bodyCanvas);
-        }));
+        });
     }
-    /**
-     * @param {?} canvas
-     * @return {?}
-     */
     setCanvas(canvas) {
         this.screenshotCanvasSource.next(canvas);
     }
-    /**
-     * @param {?} feedback
-     * @return {?}
-     */
     setFeedback(feedback) {
         this.feedbackSource.next(feedback);
     }
-    /**
-     * @param {?} isDragging
-     * @return {?}
-     */
     setIsDraggingToolbar(isDragging) {
         this.isDraggingToolbarSource.next(isDragging);
     }
-    /**
-     * @param {?} canvas
-     * @return {?}
-     */
     getImgEle(canvas) {
-        /** @type {?} */
-        const img = canvas.toDataURL('image/png');
-        /** @type {?} */
-        const imageEle = document.createElement('img');
+        const img = canvas.toDataURL('image/png'), imageEle = document.createElement('img');
         imageEle.setAttribute('src', img);
         Object.assign(imageEle.style, {
             position: 'absolute',
@@ -134,70 +73,377 @@ class FeedbackService {
         });
         return imageEle;
     }
-    /**
-     * @return {?}
-     */
     hideBackDrop() {
-        /** @type {?} */
-        const dialogBackDrop = (/** @type {?} */ (document.getElementsByClassName('dialogBackDrop')[0]));
+        const dialogBackDrop = document.getElementsByClassName('dialogBackDrop')[0];
         dialogBackDrop.style.backgroundColor = 'initial';
     }
-    /**
-     * @return {?}
-     */
     showBackDrop() {
-        /** @type {?} */
-        const dialogBackDrop = (/** @type {?} */ (document.getElementsByClassName('dialogBackDrop')[0]));
+        const dialogBackDrop = document.getElementsByClassName('dialogBackDrop')[0];
         if (!dialogBackDrop.getAttribute('data-html2canvas-ignore')) {
             dialogBackDrop.setAttribute('data-html2canvas-ignore', 'true');
         }
         dialogBackDrop.style.backgroundColor = 'rgba(0, 0, 0, .288)';
     }
 }
-FeedbackService.decorators = [
-    { type: Injectable }
-];
-if (false) {
-    /** @type {?} */
-    FeedbackService.prototype.initialVariables;
-    /** @type {?} */
-    FeedbackService.prototype.highlightedColor;
-    /** @type {?} */
-    FeedbackService.prototype.hiddenColor;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackService.prototype.screenshotCanvasSource;
-    /** @type {?} */
-    FeedbackService.prototype.screenshotCanvas$;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackService.prototype.feedbackSource;
-    /** @type {?} */
-    FeedbackService.prototype.feedback$;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackService.prototype.isDraggingToolbarSource;
-    /** @type {?} */
-    FeedbackService.prototype.isDraggingToolbar$;
-}
+FeedbackService.ɵfac = function FeedbackService_Factory(t) { return new (t || FeedbackService)(); };
+FeedbackService.ɵprov = ɵɵdefineInjectable({ token: FeedbackService, factory: FeedbackService.ɵfac });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(FeedbackService, [{
+        type: Injectable
+    }], null, null); })();
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
+const _c0 = ["toggleMove"];
+const _c1 = function (a0) { return { "toggle-decorator": a0 }; };
+function FeedbackToolbarComponent__svg_svg_15_Template(rf, ctx) { if (rf & 1) {
+    ɵɵnamespaceSVG();
+    ɵɵelementStart(0, "svg", 19);
+    ɵɵelement(1, "path", 20);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r2 = ɵɵnextContext();
+    ɵɵproperty("ngClass", ɵɵpureFunction1(1, _c1, !ctx_r2.isSwitch));
+} }
+function FeedbackToolbarComponent__svg_svg_20_Template(rf, ctx) { if (rf & 1) {
+    ɵɵnamespaceSVG();
+    ɵɵelementStart(0, "svg", 19);
+    ɵɵelement(1, "path", 20);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r3 = ɵɵnextContext();
+    ɵɵproperty("ngClass", ɵɵpureFunction1(1, _c1, ctx_r3.isSwitch));
+} }
+const _c2 = function (a0) { return { "deepen-color": a0 }; };
+class FeedbackToolbarComponent {
+    constructor(el, feedbackService) {
+        this.el = el;
+        this.feedbackService = feedbackService;
+        this.manipulate = new EventEmitter();
+        this.disableToolbarTips = false;
+        this.isSwitch = false;
+        this.isDragging = false;
+        this.vars = {};
+        this.vars = feedbackService.initialVariables;
+    }
+    ngAfterViewInit() {
+        const elStyle = this.el.nativeElement.style;
+        elStyle.position = 'absolute';
+        elStyle.left = '43%';
+        elStyle.top = '1em';
+        this.addDragListenerOnMoveBtn();
+    }
+    ngOnChanges() {
+        this.isSwitch = this.drawColor !== this.feedbackService.highlightedColor;
+    }
+    done() {
+        this.manipulate.emit('done');
+    }
+    toggleHighlight() {
+        this.isSwitch = false;
+        this.manipulate.emit(this.feedbackService.highlightedColor);
+    }
+    toggleHide() {
+        this.isSwitch = true;
+        this.manipulate.emit(this.feedbackService.hiddenColor);
+    }
+    addDragListenerOnMoveBtn() {
+        const mouseUp = fromEvent(this.toggleMoveBtn.nativeElement, 'mouseup');
+        const mouseMove = fromEvent(document.documentElement, 'mousemove');
+        const mouseDown = fromEvent(this.toggleMoveBtn.nativeElement, 'mousedown');
+        const mouseDrag = mouseDown.pipe(mergeMap((md) => {
+            this.feedbackService.setIsDraggingToolbar(true);
+            const startX = md.offsetX;
+            const startY = md.offsetY;
+            this.disableToolbarTips = true;
+            this.isDragging = true;
+            // Calculate dif with mousemove until mouseup
+            return mouseMove.pipe(map((mm) => {
+                mm.preventDefault();
+                return {
+                    left: mm.clientX - startX,
+                    top: mm.clientY - startY
+                };
+            }), finalize(() => {
+                this.isDragging = false;
+                this.disableToolbarTips = false;
+                this.feedbackService.setIsDraggingToolbar(false);
+            }), takeUntil(mouseUp));
+        }));
+        mouseDrag.subscribe((pos) => {
+            this.el.nativeElement.style.left = pos.left + 'px';
+            this.el.nativeElement.style.top = pos.top + 'px';
+        });
+    }
+}
+FeedbackToolbarComponent.ɵfac = function FeedbackToolbarComponent_Factory(t) { return new (t || FeedbackToolbarComponent)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(FeedbackService)); };
+FeedbackToolbarComponent.ɵcmp = ɵɵdefineComponent({ type: FeedbackToolbarComponent, selectors: [["feedback-toolbar"]], viewQuery: function FeedbackToolbarComponent_Query(rf, ctx) { if (rf & 1) {
+        ɵɵstaticViewQuery(_c0, true);
+    } if (rf & 2) {
+        var _t;
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.toggleMoveBtn = _t.first);
+    } }, inputs: { drawColor: "drawColor" }, outputs: { manipulate: "manipulate" }, features: [ɵɵNgOnChangesFeature], decls: 23, vars: 15, consts: [["exclude-rect", "true", 1, "toolbar"], [1, "move-toolbar", 3, "matTooltip", "matTooltipDisabled"], ["toggleMove", ""], ["focusable", "false", "aria-label", "Drag", "fill", "#BDBDBD", "height", "56", "width", "16", "viewBox", "-2 2 12 12"], ["cx", "1.5", "cy", "1.5", "r", "1.5"], ["cx", "1.5", "cy", "7.5", "r", "1.5"], ["cx", "1.5", "cy", "13.5", "r", "1.5"], ["cx", "6.5", "cy", "1.5", "r", "1.5"], ["cx", "6.5", "cy", "7.5", "r", "1.5"], ["cx", "6.5", "cy", "13.5", "r", "1.5"], [1, "highlight-toggle", 3, "matTooltip", "matTooltipDisabled", "ngClass", "click"], ["highlightBtn", ""], [1, "toggle"], ["focusable", "false", "aria-label", "", "viewBox", "0 0 24 24", "height", "36", "width", "36", "fill", "#ffd740"], ["d", "M3 3h18v18H3z"], ["focusable", "false", "aria-label", "", "fill", "#757575", "viewBox", "0 0 24 24", "height", "36", "width", "36", 3, "ngClass", 4, "ngIf"], [1, "hide-toggle", 3, "matTooltip", "matTooltipDisabled", "ngClass", "click"], ["focusable", "false", "aria-label", "", "viewBox", "0 0 24 24", "height", "36", "width", "36", "fill", "#000"], ["mat-button", "", 1, "merge-button", 3, "click"], ["focusable", "false", "aria-label", "", "fill", "#757575", "viewBox", "0 0 24 24", "height", "36", "width", "36", 3, "ngClass"], ["d", "M21 17h-2.58l2.51 2.56c-.18.69-.73 1.26-1.41 1.44L17 18.5V21h-2v-6h6v2zM19 7h2v2h-2V7zm2-2h-2V3.08c1.1 0 2 .92 2 1.92zm-6-2h2v2h-2V3zm4 8h2v2h-2v-2zM9 21H7v-2h2v2zM5 9H3V7h2v2zm0-5.92V5H3c0-1 1-1.92 2-1.92zM5 17H3v-2h2v2zM9 5H7V3h2v2zm4 0h-2V3h2v2zm0 16h-2v-2h2v2zm-8-8H3v-2h2v2zm0 8.08C3.9 21.08 3 20 3 19h2v2.08z"]], template: function FeedbackToolbarComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵelementStart(0, "div", 0);
+        ɵɵelementStart(1, "div", 1, 2);
+        ɵɵnamespaceSVG();
+        ɵɵelementStart(3, "svg", 3);
+        ɵɵelement(4, "circle", 4);
+        ɵɵelement(5, "circle", 5);
+        ɵɵelement(6, "circle", 6);
+        ɵɵelement(7, "circle", 7);
+        ɵɵelement(8, "circle", 8);
+        ɵɵelement(9, "circle", 9);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵnamespaceHTML();
+        ɵɵelementStart(10, "button", 10, 11);
+        ɵɵlistener("click", function FeedbackToolbarComponent_Template_button_click_10_listener() { return ctx.toggleHighlight(); });
+        ɵɵelementStart(12, "span", 12);
+        ɵɵnamespaceSVG();
+        ɵɵelementStart(13, "svg", 13);
+        ɵɵelement(14, "path", 14);
+        ɵɵelementEnd();
+        ɵɵtemplate(15, FeedbackToolbarComponent__svg_svg_15_Template, 2, 3, "svg", 15);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵnamespaceHTML();
+        ɵɵelementStart(16, "button", 16);
+        ɵɵlistener("click", function FeedbackToolbarComponent_Template_button_click_16_listener() { return ctx.toggleHide(); });
+        ɵɵelementStart(17, "span", 12);
+        ɵɵnamespaceSVG();
+        ɵɵelementStart(18, "svg", 17);
+        ɵɵelement(19, "path", 14);
+        ɵɵelementEnd();
+        ɵɵtemplate(20, FeedbackToolbarComponent__svg_svg_20_Template, 2, 3, "svg", 15);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+        ɵɵnamespaceHTML();
+        ɵɵelementStart(21, "button", 18);
+        ɵɵlistener("click", function FeedbackToolbarComponent_Template_button_click_21_listener() { return ctx.done(); });
+        ɵɵtext(22);
+        ɵɵelementEnd();
+        ɵɵelementEnd();
+    } if (rf & 2) {
+        ɵɵadvance(1);
+        ɵɵproperty("matTooltip", ctx.vars["moveToolbarTip"])("matTooltipDisabled", ctx.disableToolbarTips);
+        ɵɵadvance(9);
+        ɵɵproperty("matTooltip", ctx.vars["highlightTip"])("matTooltipDisabled", ctx.disableToolbarTips)("ngClass", ɵɵpureFunction1(11, _c2, !ctx.isSwitch));
+        ɵɵadvance(5);
+        ɵɵproperty("ngIf", !ctx.isSwitch);
+        ɵɵadvance(1);
+        ɵɵproperty("matTooltip", ctx.vars["hideTip"])("matTooltipDisabled", ctx.disableToolbarTips)("ngClass", ɵɵpureFunction1(13, _c2, ctx.isSwitch));
+        ɵɵadvance(4);
+        ɵɵproperty("ngIf", ctx.isSwitch);
+        ɵɵadvance(2);
+        ɵɵtextInterpolate(ctx.vars["editDoneLabel"]);
+    } }, directives: [MatTooltip, NgClass, NgIf, MatButton], styles: [".toolbar[_ngcontent-%COMP%]{align-items:center;background-color:#fff;border-radius:2px;bottom:0;box-shadow:0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12),0 11px 15px -7px rgba(0,0,0,.2);cursor:pointer;display:-webkit-inline-flex;flex-direction:row;height:56px;left:0;margin:0 auto;min-width:232px;overflow:visible;pointer-events:auto;position:absolute;right:0;top:25%;width:228px;z-index:999}.move-toolbar[_ngcontent-%COMP%]{cursor:-webkit-grab;height:56px;padding:0 12px;position:relative}.move-toolbar[_ngcontent-%COMP%]:active{cursor:-webkit-grabbing}.toggle[_ngcontent-%COMP%]{display:inline-block;height:36px;position:relative;width:36px}.toggle-decorator[_ngcontent-%COMP%]{left:0;position:absolute;top:0}.highlight-toggle[_ngcontent-%COMP%]{align-items:center;background-color:#fff;border:none;box-sizing:border-box;cursor:pointer;display:-webkit-flex;height:56px;justify-content:center;outline:none;padding:10px;pointer-events:auto;position:relative;width:56px}.deepen-color[_ngcontent-%COMP%]{background-color:#e0e0e0!important}.hide-toggle[_ngcontent-%COMP%]{align-items:center;background-color:#fff;border:none;box-sizing:border-box;cursor:pointer;display:-webkit-flex;height:56px;justify-content:center;outline:none;padding:10px;pointer-events:auto;position:relative;width:56px}.merge-button[_ngcontent-%COMP%]{color:#4285f4;margin:0 10px!important;min-width:56px;padding:0!important}"] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(FeedbackToolbarComponent, [{
+        type: Component,
+        args: [{
+                selector: 'feedback-toolbar',
+                templateUrl: './feedback-toolbar.component.html',
+                styleUrls: ['./feedback-toolbar.component.css']
+            }]
+    }], function () { return [{ type: ElementRef }, { type: FeedbackService }]; }, { drawColor: [{
+            type: Input
+        }], manipulate: [{
+            type: Output
+        }], toggleMoveBtn: [{
+            type: ViewChild,
+            args: ['toggleMove', { static: true }]
+        }] }); })();
+
+function FeedbackRectangleComponent_span_1_Template(rf, ctx) { if (rf & 1) {
+    const _r2 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "span", 2);
+    ɵɵlistener("click", function FeedbackRectangleComponent_span_1_Template_span_click_0_listener() { ɵɵrestoreView(_r2); const ctx_r1 = ɵɵnextContext(); return ctx_r1.onClose(); });
+    ɵɵnamespaceSVG();
+    ɵɵelementStart(1, "svg", 3);
+    ɵɵelement(2, "path", 4);
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} }
+const _c0$1 = function (a0, a1, a2, a3) { return { "left.px": a0, "top.px": a1, "width.px": a2, "height.px": a3 }; };
+const _c1$1 = function (a0, a1, a2) { return { "highlight": a0, "hide": a1, "noHover": a2 }; };
+class FeedbackRectangleComponent {
+    constructor(feedbackService) {
+        this.feedbackService = feedbackService;
+        this.close = new EventEmitter();
+        this.showCloseTag = false;
+    }
+    onMouseEnter() {
+        this.showCloseTag = this.noHover === false;
+    }
+    onMouseLeave() {
+        this.showCloseTag = false;
+    }
+    onClose() {
+        this.close.emit();
+    }
+}
+FeedbackRectangleComponent.ɵfac = function FeedbackRectangleComponent_Factory(t) { return new (t || FeedbackRectangleComponent)(ɵɵdirectiveInject(FeedbackService)); };
+FeedbackRectangleComponent.ɵcmp = ɵɵdefineComponent({ type: FeedbackRectangleComponent, selectors: [["feedback-rectangle"]], hostBindings: function FeedbackRectangleComponent_HostBindings(rf, ctx) { if (rf & 1) {
+        ɵɵlistener("mouseenter", function FeedbackRectangleComponent_mouseenter_HostBindingHandler() { return ctx.onMouseEnter(); })("mouseleave", function FeedbackRectangleComponent_mouseleave_HostBindingHandler() { return ctx.onMouseLeave(); });
+    } }, inputs: { rectangle: "rectangle", noHover: "noHover" }, outputs: { close: "close" }, decls: 2, vars: 12, consts: [["exclude-rect", "true", 1, "rect", 3, "ngStyle", "ngClass"], ["exclude-rect", "true", "class", "close", 3, "click", 4, "ngIf"], ["exclude-rect", "true", 1, "close", 3, "click"], ["viewBox", "0 0 1024 1024", "width", "16", "height", "16"], ["d", "M896 224l-96-96-288 288-288-288-96 96 288 288-288 288 96 96 288-288 288 288 96-96-288-288 288-288z"]], template: function FeedbackRectangleComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵelementStart(0, "div", 0);
+        ɵɵtemplate(1, FeedbackRectangleComponent_span_1_Template, 3, 0, "span", 1);
+        ɵɵelementEnd();
+    } if (rf & 2) {
+        ɵɵproperty("ngStyle", ɵɵpureFunction4(3, _c0$1, ctx.rectangle.startX, ctx.rectangle.startY, ctx.rectangle.width, ctx.rectangle.height))("ngClass", ɵɵpureFunction3(8, _c1$1, ctx.rectangle.color === ctx.feedbackService.highlightedColor, ctx.rectangle.color !== ctx.feedbackService.highlightedColor, ctx.noHover));
+        ɵɵadvance(1);
+        ɵɵproperty("ngIf", ctx.showCloseTag);
+    } }, directives: [NgStyle, NgClass, NgIf], styles: [".rect[_ngcontent-%COMP%]{background:none;position:fixed;z-index:3}.highlight[_ngcontent-%COMP%]:not(.noHover):hover{background:rgba(55,131,249,.2);cursor:default}.hide[_ngcontent-%COMP%]{background-color:#000}.hide[_ngcontent-%COMP%]:not(.noHover):hover{background-color:rgba(31,31,31,.75)}.rect[_ngcontent-%COMP%]   .close[_ngcontent-%COMP%]{-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;align-items:center;background:#fff;border-radius:50%;color:#999;cursor:pointer;display:flex;height:24px;justify-content:center;position:absolute;right:-12px;top:-12px;user-select:none;width:24px}"] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(FeedbackRectangleComponent, [{
+        type: Component,
+        args: [{
+                selector: 'feedback-rectangle',
+                templateUrl: './feedback-rectangle.component.html',
+                styleUrls: ['./feedback-rectangle.component.css']
+            }]
+    }], function () { return [{ type: FeedbackService }]; }, { rectangle: [{
+            type: Input
+        }], noHover: [{
+            type: Input
+        }], close: [{
+            type: Output
+        }], onMouseEnter: [{
+            type: HostListener,
+            args: ['mouseenter']
+        }], onMouseLeave: [{
+            type: HostListener,
+            args: ['mouseleave']
+        }] }); })();
+
+const _c0$2 = ["screenshotParent"];
+function FeedbackDialogComponent_div_0_div_6_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "div");
+    ɵɵtext(1);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r3 = ɵɵnextContext(2);
+    ɵɵadvance(1);
+    ɵɵtextInterpolate(ctx_r3.vars["placeholder"]);
+} }
+function FeedbackDialogComponent_div_0_div_11_div_4_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "div", 21);
+    ɵɵnamespaceSVG();
+    ɵɵelementStart(1, "svg", 22);
+    ɵɵelement(2, "path", 23);
+    ɵɵelementEnd();
+    ɵɵnamespaceHTML();
+    ɵɵelementStart(3, "span", 24);
+    ɵɵtext(4);
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r6 = ɵɵnextContext(3);
+    ɵɵadvance(4);
+    ɵɵtextInterpolate(ctx_r6.vars["editTip"]);
+} }
+function FeedbackDialogComponent_div_0_div_11_Template(rf, ctx) { if (rf & 1) {
+    const _r8 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "div", 17, 18);
+    ɵɵlistener("click", function FeedbackDialogComponent_div_0_div_11_Template_div_click_0_listener() { ɵɵrestoreView(_r8); const ctx_r7 = ɵɵnextContext(2); return ctx_r7.expandDrawingBoard(); });
+    ɵɵelement(2, "mat-spinner", 19);
+    ɵɵelement(3, "div");
+    ɵɵtemplate(4, FeedbackDialogComponent_div_0_div_11_div_4_Template, 5, 1, "div", 20);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r4 = ɵɵnextContext(2);
+    ɵɵadvance(2);
+    ɵɵproperty("diameter", 30);
+    ɵɵadvance(2);
+    ɵɵproperty("ngIf", !ctx_r4.showSpinner);
+} }
+function FeedbackDialogComponent_div_0_Template(rf, ctx) { if (rf & 1) {
+    const _r10 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "div", 4);
+    ɵɵelementStart(1, "div", 5);
+    ɵɵelementStart(2, "div", 6);
+    ɵɵtext(3);
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+    ɵɵelementStart(4, "div", 7);
+    ɵɵelementStart(5, "div", 8);
+    ɵɵtemplate(6, FeedbackDialogComponent_div_0_div_6_Template, 2, 1, "div", 9);
+    ɵɵelementEnd();
+    ɵɵelementStart(7, "textarea", 10);
+    ɵɵlistener("ngModelChange", function FeedbackDialogComponent_div_0_Template_textarea_ngModelChange_7_listener($event) { ɵɵrestoreView(_r10); const ctx_r9 = ɵɵnextContext(); return ctx_r9.feedback.description = $event; });
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+    ɵɵelementStart(8, "div", 11);
+    ɵɵelementStart(9, "mat-checkbox", 12);
+    ɵɵlistener("ngModelChange", function FeedbackDialogComponent_div_0_Template_mat_checkbox_ngModelChange_9_listener($event) { ɵɵrestoreView(_r10); const ctx_r11 = ɵɵnextContext(); return ctx_r11.includeScreenshot = $event; })("change", function FeedbackDialogComponent_div_0_Template_mat_checkbox_change_9_listener() { ɵɵrestoreView(_r10); const ctx_r12 = ɵɵnextContext(); return ctx_r12.isIncludeScreenshot(); });
+    ɵɵtext(10);
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+    ɵɵtemplate(11, FeedbackDialogComponent_div_0_div_11_Template, 5, 2, "div", 13);
+    ɵɵelementStart(12, "mat-dialog-actions", 14);
+    ɵɵelementStart(13, "button", 15);
+    ɵɵlistener("click", function FeedbackDialogComponent_div_0_Template_button_click_13_listener() { ɵɵrestoreView(_r10); const ctx_r13 = ɵɵnextContext(); return ctx_r13.dialogRef.close(); });
+    ɵɵtext(14);
+    ɵɵelementEnd();
+    ɵɵelementStart(15, "button", 16);
+    ɵɵlistener("click", function FeedbackDialogComponent_div_0_Template_button_click_15_listener() { ɵɵrestoreView(_r10); const ctx_r14 = ɵɵnextContext(); return ctx_r14.dialogRef.close(true); });
+    ɵɵtext(16);
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r0 = ɵɵnextContext();
+    ɵɵadvance(3);
+    ɵɵtextInterpolate1(" ", ctx_r0.vars["title"], " ");
+    ɵɵadvance(3);
+    ɵɵproperty("ngIf", ctx_r0.feedback.description == "");
+    ɵɵadvance(1);
+    ɵɵproperty("ngModel", ctx_r0.feedback.description);
+    ɵɵadvance(2);
+    ɵɵproperty("ngModel", ctx_r0.includeScreenshot);
+    ɵɵadvance(1);
+    ɵɵtextInterpolate(ctx_r0.vars["checkboxLabel"]);
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", ctx_r0.includeScreenshot);
+    ɵɵadvance(3);
+    ɵɵtextInterpolate(ctx_r0.vars["cancelLabel"]);
+    ɵɵadvance(2);
+    ɵɵtextInterpolate(ctx_r0.vars["sendLabel"]);
+} }
+function FeedbackDialogComponent_div_1_div_1_Template(rf, ctx) { if (rf & 1) {
+    ɵɵelementStart(0, "div", 28);
+    ɵɵtext(1);
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r15 = ɵɵnextContext(2);
+    ɵɵadvance(1);
+    ɵɵtextInterpolate1(" ", ctx_r15.vars["drawRectTip"], " ");
+} }
+function FeedbackDialogComponent_div_1_Template(rf, ctx) { if (rf & 1) {
+    const _r17 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "div", 25);
+    ɵɵtemplate(1, FeedbackDialogComponent_div_1_div_1_Template, 2, 1, "div", 26);
+    ɵɵelementStart(2, "feedback-toolbar", 27);
+    ɵɵlistener("manipulate", function FeedbackDialogComponent_div_1_Template_feedback_toolbar_manipulate_2_listener($event) { ɵɵrestoreView(_r17); const ctx_r16 = ɵɵnextContext(); return ctx_r16.manipulate($event); });
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const ctx_r1 = ɵɵnextContext();
+    ɵɵadvance(1);
+    ɵɵproperty("ngIf", ctx_r1.showToolbarTips);
+    ɵɵadvance(1);
+    ɵɵproperty("drawColor", ctx_r1.drawColor);
+} }
+function FeedbackDialogComponent_div_2_Template(rf, ctx) { if (rf & 1) {
+    const _r21 = ɵɵgetCurrentView();
+    ɵɵelementStart(0, "div");
+    ɵɵelementStart(1, "feedback-rectangle", 29);
+    ɵɵlistener("close", function FeedbackDialogComponent_div_2_Template_feedback_rectangle_close_1_listener() { ɵɵrestoreView(_r21); const index_r19 = ctx.index; const ctx_r20 = ɵɵnextContext(); return ctx_r20.closeRect(index_r19); });
+    ɵɵelementEnd();
+    ɵɵelementEnd();
+} if (rf & 2) {
+    const rectangle_r18 = ctx.$implicit;
+    const ctx_r2 = ɵɵnextContext();
+    ɵɵadvance(1);
+    ɵɵproperty("rectangle", rectangle_r18)("noHover", !ctx_r2.showToolbar || ctx_r2.isDrawingRect);
+} }
+const _c1$2 = function (a0) { return { "pointerCursor": a0 }; };
 class FeedbackDialogComponent {
-    /**
-     * @param {?} dialogRef
-     * @param {?} feedbackService
-     * @param {?} detector
-     * @param {?} el
-     */
     constructor(dialogRef, feedbackService, detector, el) {
         this.dialogRef = dialogRef;
         this.feedbackService = feedbackService;
@@ -221,46 +467,28 @@ class FeedbackDialogComponent {
         this.feedback.description = '';
         this.vars = this.feedbackService.initialVariables;
     }
-    /**
-     * @return {?}
-     */
     ngAfterViewInit() {
-        this.feedbackService.screenshotCanvas$.subscribe((/**
-         * @param {?} canvas
-         * @return {?}
-         */
-        (canvas) => {
+        this.feedbackService.screenshotCanvas$.subscribe((canvas) => {
             this.showSpinner = false;
             this.feedback.screenshot = canvas.toDataURL('image/png');
             this.screenshotEle = this.feedbackService.getImgEle(canvas);
             this.appendScreenshot();
-        }));
-        this.feedbackService.isDraggingToolbar$.subscribe((/**
-         * @param {?} isDragging
-         * @return {?}
-         */
-        (isDragging) => {
+        });
+        this.feedbackService.isDraggingToolbar$.subscribe((isDragging) => {
             if (isDragging) {
                 this.destroyCanvasListeners();
             }
             else {
                 this.addCanvasListeners();
             }
-        }));
-        this.dialogRef.afterClosed().subscribe((/**
-         * @param {?} sendNow
-         * @return {?}
-         */
-        (sendNow) => {
+        });
+        this.dialogRef.afterClosed().subscribe((sendNow) => {
             if (sendNow === true) {
                 this.feedbackService.setFeedback(this.feedback);
             }
-        }));
+        });
         this.feedbackService.showBackDrop();
     }
-    /**
-     * @return {?}
-     */
     expandDrawingBoard() {
         this.showToolbar = true;
         if (!this.drawCanvas) {
@@ -273,20 +501,12 @@ class FeedbackDialogComponent {
         this.feedbackService.hideBackDrop();
         console.log('expand the board');
     }
-    /**
-     * @param {?} evt
-     * @return {?}
-     */
     onEscapeKeyDownHandler(evt) {
         this.showToolbar = false;
         this.includeScreenshot = true;
         this.detector.detectChanges();
         this.dialogRef.close('key down esc to close');
     }
-    /**
-     * @param {?} manipulation
-     * @return {?}
-     */
     manipulate(manipulation) {
         if (manipulation === 'done') {
             this.showToolbarTips = false;
@@ -300,16 +520,9 @@ class FeedbackDialogComponent {
             this.startDraw(manipulation);
         }
     }
-    /**
-     * @param {?} color
-     * @return {?}
-     */
     startDraw(color) {
         this.drawColor = color;
     }
-    /**
-     * @return {?}
-     */
     isIncludeScreenshot() {
         if (this.includeScreenshot) {
             this.detector.detectChanges();
@@ -322,21 +535,13 @@ class FeedbackDialogComponent {
             this.showSpinner = true;
         }
     }
-    /**
-     * @private
-     * @return {?}
-     */
     appendScreenshot() {
         if (this.screenshotParent) {
             this.screenshotParent.nativeElement.appendChild(this.screenshotEle);
         }
     }
-    /**
-     * @private
-     * @return {?}
-     */
     initBackgroundCanvas() {
-        this.drawCanvas = (/** @type {?} */ (document.getElementById('draw-canvas')));
+        this.drawCanvas = document.getElementById('draw-canvas');
         // The canvas to draw, must use this way to initial the height and width
         this.drawCanvas.style.height = this.scrollHeight + '';
         this.drawCanvas.style.width = this.scrollWidth + '';
@@ -344,29 +549,14 @@ class FeedbackDialogComponent {
         this.drawCanvas.width = this.scrollWidth;
         this.drawContainerRect();
     }
-    /**
-     * @private
-     * @return {?}
-     */
     drawContainerRect() {
-        /** @type {?} */
-        const drawContext = this.drawCanvas.getContext('2d');
-        /** @type {?} */
-        const width = this.scrollWidth;
-        /** @type {?} */
-        const height = this.scrollHeight;
+        const drawContext = this.drawCanvas.getContext('2d'), width = this.scrollWidth, height = this.scrollHeight;
         drawContext.beginPath();
         drawContext.fillStyle = 'rgba(0,0,0,0.3)';
         drawContext.clearRect(0, 0, width, height);
         drawContext.fillRect(0, 0, width, height); // draw the rectangle
     }
-    /**
-     * @private
-     * @param {?} rect
-     * @return {?}
-     */
     drawRectangle(rect) {
-        /** @type {?} */
         const context = this.drawCanvas.getContext('2d');
         context.lineJoin = 'round';
         context.beginPath();
@@ -382,70 +572,31 @@ class FeedbackDialogComponent {
             context.rect(rect.startX, rect.startY, rect.width, rect.height);
             context.stroke();
             context.clearRect(rect.startX, rect.startY, rect.width, rect.height);
-            this.rectangles.forEach((/**
-             * @param {?} tmpRect
-             * @return {?}
-             */
-            tmpRect => {
+            this.rectangles.forEach(tmpRect => {
                 if (tmpRect.color === this.feedbackService.highlightedColor) {
                     context.clearRect(tmpRect.startX, tmpRect.startY, tmpRect.width, tmpRect.height);
                 }
-            }));
+            });
         }
     }
-    /**
-     * @private
-     * @return {?}
-     */
     addCanvasListeners() {
-        /** @type {?} */
-        const mouseUp = fromEvent(document.documentElement, 'mouseup');
-        /** @type {?} */
-        const mouseMove = fromEvent(document.documentElement, 'mousemove');
-        /** @type {?} */
-        const mouseDown = fromEvent(document.documentElement, 'mousedown');
-        /** @type {?} */
-        const scroll = fromEvent(window, 'scroll');
+        const mouseUp = fromEvent(document.documentElement, 'mouseup'), mouseMove = fromEvent(document.documentElement, 'mousemove'), mouseDown = fromEvent(document.documentElement, 'mousedown'), scroll = fromEvent(window, 'scroll');
         this.manuallyDrawRect(mouseDown, mouseMove, mouseUp);
         this.autoDrawRect(mouseMove);
         this.changeRectPosition(scroll);
     }
-    /**
-     * @private
-     * @param {?} scroll
-     * @return {?}
-     */
     changeRectPosition(scroll) {
-        scroll.subscribe((/**
-         * @param {?} event
-         * @return {?}
-         */
-        event => {
-            /** @type {?} */
-            const currentWindowScrollX = window.scrollX;
-            /** @type {?} */
-            const currentWindowScrollY = window.scrollY;
-            this.rectangles.forEach((/**
-             * @param {?} rect
-             * @return {?}
-             */
-            rect => {
+        scroll.subscribe(event => {
+            const currentWindowScrollX = window.scrollX, currentWindowScrollY = window.scrollY;
+            this.rectangles.forEach(rect => {
                 rect.startY = rect.startY - (currentWindowScrollY - rect.windowScrollY);
                 rect.startX = rect.startX - (currentWindowScrollX - rect.windowScrollX);
                 rect.windowScrollY = currentWindowScrollY;
                 rect.windowScrollX = currentWindowScrollX;
-            }));
+            });
             this.drawPersistCanvasRectangles();
-        }), (/**
-         * @param {?} error
-         * @return {?}
-         */
-        error => console.error(error)));
+        }, error => console.error(error));
     }
-    /**
-     * @private
-     * @return {?}
-     */
     destroyCanvasListeners() {
         if (this.manuallyDrawRect$) {
             this.manuallyDrawRect$.unsubscribe();
@@ -454,46 +605,25 @@ class FeedbackDialogComponent {
             this.autoDrawRect$.unsubscribe();
         }
     }
-    /**
-     * @private
-     * @param {?} mouseDown
-     * @param {?} mouseMove
-     * @param {?} mouseUp
-     * @return {?}
-     */
     manuallyDrawRect(mouseDown, mouseMove, mouseUp) {
-        /** @type {?} */
-        const mouseDrag = mouseDown.pipe(mergeMap((/**
-         * @param {?} mouseDownEvent
-         * @return {?}
-         */
-        (mouseDownEvent) => {
+        const mouseDrag = mouseDown.pipe(mergeMap((mouseDownEvent) => {
             if (this.showToolbarTips) {
                 this.showToolbarTips = false;
             }
             this.autoDrawRect$.unsubscribe();
             this.isDrawingRect = true;
-            /** @type {?} */
             const newRectangle = new Rectangle();
             newRectangle.startX = mouseDownEvent.clientX;
             newRectangle.startY = mouseDownEvent.clientY;
             newRectangle.color = this.drawColor;
-            return mouseMove.pipe(map((/**
-             * @param {?} mouseMoveEvent
-             * @return {?}
-             */
-            (mouseMoveEvent) => {
+            return mouseMove.pipe(map((mouseMoveEvent) => {
                 newRectangle.width = mouseMoveEvent.clientX - mouseDownEvent.clientX;
                 newRectangle.height = mouseMoveEvent.clientY - mouseDownEvent.clientY;
                 return newRectangle;
-            })), finalize((/**
-             * @return {?}
-             */
-            () => {
+            }), finalize(() => {
                 // click to draw rectangle
                 if (newRectangle.width === undefined || newRectangle.height === undefined ||
                     newRectangle.width === 0 || newRectangle.height === 0) {
-                    /** @type {?} */
                     const rect = this.drawTempCanvasRectangle(mouseDownEvent);
                     if (rect) {
                         this.rectangles.push(rect);
@@ -514,72 +644,33 @@ class FeedbackDialogComponent {
                 this.drawPersistCanvasRectangles();
                 this.autoDrawRect(mouseMove);
                 this.isDrawingRect = false;
-            })), takeUntil(mouseUp));
-        })));
-        this.manuallyDrawRect$ = mouseDrag.subscribe((/**
-         * @param {?} rec
-         * @return {?}
-         */
-        (rec) => {
+            }), takeUntil(mouseUp));
+        }));
+        this.manuallyDrawRect$ = mouseDrag.subscribe((rec) => {
             this.drawPersistCanvasRectangles();
             this.drawRectangle(rec);
-        }));
-    }
-    /**
-     * @private
-     * @param {?} mouseMove
-     * @return {?}
-     */
-    autoDrawRect(mouseMove) {
-        this.autoDrawRect$ = mouseMove.subscribe({
-            next: (/**
-             * @param {?} mouseMoveEvent
-             * @return {?}
-             */
-            (mouseMoveEvent) => {
-                this.drawPersistCanvasRectangles();
-                this.drawTempCanvasRectangle(mouseMoveEvent);
-            }),
-            error: (/**
-             * @param {?} err
-             * @return {?}
-             */
-            err => console.error('something wrong occurred: ' + err)),
         });
     }
-    /**
-     * @private
-     * @return {?}
-     */
+    autoDrawRect(mouseMove) {
+        this.autoDrawRect$ = mouseMove.subscribe({
+            next: (mouseMoveEvent) => {
+                this.drawPersistCanvasRectangles();
+                this.drawTempCanvasRectangle(mouseMoveEvent);
+            },
+            error: err => console.error('something wrong occurred: ' + err),
+        });
+    }
     drawPersistCanvasRectangles() {
         this.drawContainerRect();
-        this.rectangles.forEach((/**
-         * @param {?} tmpRect
-         * @return {?}
-         */
-        tmpRect => {
+        this.rectangles.forEach(tmpRect => {
             this.drawRectangle(tmpRect);
-        }));
+        });
     }
-    /**
-     * @private
-     * @param {?} event
-     * @return {?}
-     */
     drawTempCanvasRectangle(event) {
-        /** @type {?} */
         let rectangle = null;
-        /** @type {?} */
-        const clientX = event.clientX;
-        /** @type {?} */
-        const clientY = event.clientY;
-        /** @type {?} */
-        const els = document.elementsFromPoint(clientX, clientY);
-        /** @type {?} */
-        const el = els[2];
+        const clientX = event.clientX, clientY = event.clientY, els = document.elementsFromPoint(clientX, clientY), el = els[2];
         if ((!this.isExcludeRect(els)) && el && this.elCouldBeHighlighted.indexOf(el.nodeName.toLowerCase()) > -1) {
             rectangle = new Rectangle();
-            /** @type {?} */
             const rect = el.getBoundingClientRect();
             this.drawCanvas.style.cursor = 'pointer';
             Object.assign(rectangle, {
@@ -596,344 +687,55 @@ class FeedbackDialogComponent {
         }
         return rectangle;
     }
-    /**
-     * @param {?} index
-     * @return {?}
-     */
     closeRect(index) {
         this.rectangles.splice(index, 1);
         this.drawPersistCanvasRectangles();
     }
-    /**
-     * @private
-     * @param {?} elements
-     * @return {?}
-     */
     isExcludeRect(elements) {
-        /** @type {?} */
-        const result = elements.some((/**
-         * @param {?} el
-         * @return {?}
-         */
-        el => {
+        const result = elements.some(el => {
             return el.getAttribute('exclude-rect') === 'true';
-        }));
+        });
         return result;
     }
 }
-FeedbackDialogComponent.decorators = [
-    { type: Component, args: [{
+FeedbackDialogComponent.ɵfac = function FeedbackDialogComponent_Factory(t) { return new (t || FeedbackDialogComponent)(ɵɵdirectiveInject(MatDialogRef), ɵɵdirectiveInject(FeedbackService), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(ElementRef)); };
+FeedbackDialogComponent.ɵcmp = ɵɵdefineComponent({ type: FeedbackDialogComponent, selectors: [["feedback-dialog"]], viewQuery: function FeedbackDialogComponent_Query(rf, ctx) { if (rf & 1) {
+        ɵɵviewQuery(_c0$2, true);
+    } if (rf & 2) {
+        var _t;
+        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.screenshotParent = _t.first);
+    } }, hostBindings: function FeedbackDialogComponent_HostBindings(rf, ctx) { if (rf & 1) {
+        ɵɵlistener("keydown.escape", function FeedbackDialogComponent_keydown_escape_HostBindingHandler($event) { return ctx.onEscapeKeyDownHandler($event); }, false, ɵɵresolveDocument);
+    } }, decls: 4, vars: 6, consts: [["class", "dialog", "data-html2canvas-ignore", "true", 4, "ngIf"], ["data-html2canvas-ignore", "true", 4, "ngIf"], [4, "ngFor", "ngForOf"], ["id", "draw-canvas", 1, "drawCanvas", 3, "ngClass"], ["data-html2canvas-ignore", "true", 1, "dialog"], [1, "dialog-title"], [1, "title-font"], [1, "dialog-content"], [1, "description-tips"], [4, "ngIf"], ["autofocus", "", 1, "description", 3, "ngModel", "ngModelChange"], [1, "screenshot-checkbox"], [3, "ngModel", "ngModelChange", "change"], ["class", "screenshot-content", 3, "click", 4, "ngIf"], ["align", "end", 1, "dialog-actions"], ["mat-button", "", 1, "action-button", 3, "click"], ["mat-button", "", 1, "submit-button", "action-button", 3, "click"], [1, "screenshot-content", 3, "click"], ["screenshotParent", ""], [1, "loading", 3, "diameter"], ["class", "screenshot-tips", 4, "ngIf"], [1, "screenshot-tips"], ["focusable", "false", "aria-label", "", "viewBox", "0 0 24 24"], ["d", "M21 17h-2.58l2.51 2.56c-.18.69-.73 1.26-1.41 1.44L17 18.5V21h-2v-6h6v2zM19 7h2v2h-2V7zm2-2h-2V3.08c1.1 0 2 .92 2 1.92zm-6-2h2v2h-2V3zm4 8h2v2h-2v-2zM9 21H7v-2h2v2zM5 9H3V7h2v2zm0-5.92V5H3c0-1 1-1.92 2-1.92zM5 17H3v-2h2v2zM9 5H7V3h2v2zm4 0h-2V3h2v2zm0 16h-2v-2h2v2zm-8-8H3v-2h2v2zm0 8.08C3.9 21.08 3 20 3 19h2v2.08z"], [1, "screenshot-tips-content"], ["data-html2canvas-ignore", "true"], ["class", "toolbar-tips", 4, "ngIf"], [3, "drawColor", "manipulate"], [1, "toolbar-tips"], [3, "rectangle", "noHover", "close"]], template: function FeedbackDialogComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵɵtemplate(0, FeedbackDialogComponent_div_0_Template, 17, 8, "div", 0);
+        ɵɵtemplate(1, FeedbackDialogComponent_div_1_Template, 3, 2, "div", 1);
+        ɵɵtemplate(2, FeedbackDialogComponent_div_2_Template, 2, 2, "div", 2);
+        ɵɵelement(3, "canvas", 3);
+    } if (rf & 2) {
+        ɵɵproperty("ngIf", !ctx.showToolbar);
+        ɵɵadvance(1);
+        ɵɵproperty("ngIf", ctx.showToolbar);
+        ɵɵadvance(1);
+        ɵɵproperty("ngForOf", ctx.rectangles);
+        ɵɵadvance(1);
+        ɵɵproperty("ngClass", ɵɵpureFunction1(4, _c1$2, !ctx.showToolbar));
+    } }, directives: [NgIf, NgForOf, NgClass, DefaultValueAccessor, NgControlStatus, NgModel, MatCheckbox, MatDialogActions, MatButton, MatSpinner, FeedbackToolbarComponent, FeedbackRectangleComponent], styles: [".dialog[_ngcontent-%COMP%]{background-color:#fff;position:relative;width:360px;z-index:1000}.dialog-title[_ngcontent-%COMP%]{background-color:#607d8b;color:#fff;height:56px}.title-font[_ngcontent-%COMP%]{color:#fff;float:left;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:20px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:300;line-height:56px;margin:0;padding:0 16px}.dialog-content[_ngcontent-%COMP%]{display:-webkit-flex;flex-grow:1;height:200px;position:relative}.description[_ngcontent-%COMP%]{border:none;box-shadow:none;box-sizing:border-box;color:#212121;flex-grow:1;height:inherit;max-width:100%;outline:none;resize:none;width:100%}.description[_ngcontent-%COMP%], .description-tips[_ngcontent-%COMP%]{font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:16px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:400;line-height:normal;padding:18px 16px 0}.description-tips[_ngcontent-%COMP%]{color:#bdbdbd;display:block;left:0;position:absolute;right:0}.screenshot-checkbox[_ngcontent-%COMP%]{background-color:#f8f8f8;display:flex;flex-direction:column;height:40px;justify-content:center;padding:0 16px}.screenshot-content[_ngcontent-%COMP%]{background:#ededed none;border:none;cursor:pointer;display:block;height:192px;overflow:hidden;padding:0;position:relative;text-align:center;width:100%}.screenshot-tips[_ngcontent-%COMP%]{align-items:center;background-color:hsla(0,0%,97.3%,.6);border-radius:4px;bottom:0;box-sizing:border-box;display:-webkit-flex;flex-direction:column;justify-content:center;left:0;margin:0 auto;min-height:112px;position:absolute;right:0;top:50%;transform:translateY(-50%);width:224px;z-index:5}.screenshot-content[_ngcontent-%COMP%]:hover   .screenshot-tips[_ngcontent-%COMP%]{background-color:hsla(0,0%,97.3%,.8)}.screenshot-content[_ngcontent-%COMP%]:hover   .screenshot-tips-content[_ngcontent-%COMP%]{color:#4285f4}.screenshot-content[_ngcontent-%COMP%]:hover   svg[_ngcontent-%COMP%]{color:#4285f4;fill:currentColor}.screenshot-tips[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%]{color:#757575;fill:currentColor;height:48px;width:48px}.screenshot-tips-content[_ngcontent-%COMP%]{color:#757575;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;line-height:20px;margin-top:12px}.dialog-actions[_ngcontent-%COMP%]{border-top:1px solid #e0e0e0}.submit-button[_ngcontent-%COMP%]{color:#4285f4;margin-left:5px!important;margin-right:8px!important}.action-button[_ngcontent-%COMP%]{font-size:14px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:500;height:35px;line-height:normal;margin:10px 0;min-width:75px;padding:0 8px;position:relative}.loading[_ngcontent-%COMP%]{bottom:0;left:0;margin:0 auto;position:absolute;right:0;top:45%}.mat-dialog-actions[_ngcontent-%COMP%]{padding:0!important}  .feedbackDialog .mat-dialog-container{background-color:hsla(0,0%,100%,0);box-shadow:none;overflow:visible;padding:0}.toolbar-tips[_ngcontent-%COMP%]{-webkit-animation:cssAnimation 0s ease-in 5s forwards;-webkit-animation-fill-mode:forwards;animation:cssAnimation 0s ease-in 5s forwards;animation-fill-mode:forwards;background-color:hsla(0,0%,100%,.6);border-radius:12px;color:#757575;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:34px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:400;height:auto;line-height:40px;margin-bottom:72px;padding:22px 0;text-align:center;visibility:visible;width:656px}@keyframes cssAnimation{to{height:0;overflow:hidden;width:0}}@-webkit-keyframes cssAnimation{to{height:0;visibility:hidden;width:0}}.drawCanvas[_ngcontent-%COMP%]{cursor:crosshair;left:0;margin:0 auto;position:absolute;top:0;z-index:-1}.pointerCursor[_ngcontent-%COMP%]{cursor:default!important}"] });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(FeedbackDialogComponent, [{
+        type: Component,
+        args: [{
                 selector: 'feedback-dialog',
-                template: "<div class=\"dialog\" *ngIf=\"!showToolbar\" data-html2canvas-ignore=\"true\">\n  <div class=\"dialog-title\">\n    <div class=\"title-font\">\n      {{vars['title']}}\n    </div>\n  </div>\n  <div class=\"dialog-content\">\n    <div class=\"description-tips\">\n      <div *ngIf=\"feedback.description==''\">{{vars['placeholder']}}</div>\n    </div>\n    <textarea\n      autofocus\n      class=\"description\"\n      [(ngModel)]=\"feedback.description\"\n    ></textarea>\n  </div>\n  <div class=\"screenshot-checkbox\">\n    <mat-checkbox [(ngModel)]=\"includeScreenshot\" (change)=\"isIncludeScreenshot()\">{{vars['checkboxLabel']}}</mat-checkbox>\n  </div>\n\n  <div #screenshotParent class=\"screenshot-content\" (click)=\"expandDrawingBoard()\" *ngIf=\"includeScreenshot\">\n    <mat-spinner class=\"loading\" [diameter]=\"30\" ></mat-spinner>\n    <div></div>\n    <div class=\"screenshot-tips\" *ngIf=\"!showSpinner\">\n      <svg focusable=\"false\" aria-label=\"\" viewBox=\"0 0 24 24\">\n        <path\n          d=\"M21 17h-2.58l2.51 2.56c-.18.69-.73 1.26-1.41 1.44L17 18.5V21h-2v-6h6v2zM19 7h2v2h-2V7zm2-2h-2V3.08c1.1 0 2 .92 2 1.92zm-6-2h2v2h-2V3zm4 8h2v2h-2v-2zM9 21H7v-2h2v2zM5 9H3V7h2v2zm0-5.92V5H3c0-1 1-1.92 2-1.92zM5 17H3v-2h2v2zM9 5H7V3h2v2zm4 0h-2V3h2v2zm0 16h-2v-2h2v2zm-8-8H3v-2h2v2zm0 8.08C3.9 21.08 3 20 3 19h2v2.08z\"></path>\n      </svg>\n      <span class=\"screenshot-tips-content\">{{vars['editTip']}}</span>\n    </div>\n  </div>\n\n  <mat-dialog-actions class=\"dialog-actions\" align=\"end\">\n    <button mat-button (click)=\"dialogRef.close()\" class=\"action-button\">{{vars['cancelLabel']}}</button>\n    <button mat-button (click)=\"dialogRef.close(true)\" class=\"submit-button action-button\">{{vars['sendLabel']}}</button>\n  </mat-dialog-actions>\n</div>\n<div *ngIf=\"showToolbar\" data-html2canvas-ignore=\"true\">\n  <div class=\"toolbar-tips\" *ngIf=\"showToolbarTips\">\n    {{vars['drawRectTip']}}\n  </div>\n\n  <feedback-toolbar [drawColor]=\"drawColor\" (manipulate)=\"manipulate($event)\"></feedback-toolbar>\n</div>\n<div *ngFor=\"let rectangle of rectangles; index as index\" >\n    <feedback-rectangle [rectangle]=\"rectangle\" [noHover]=\"!showToolbar || isDrawingRect\" (close)=\"closeRect(index)\">\n    </feedback-rectangle>\n</div>\n<canvas id=\"draw-canvas\" class=\"drawCanvas\" [ngClass]=\"{'pointerCursor': !showToolbar}\"></canvas>\n",
-                styles: [".dialog{z-index:1000;position:relative;width:360px;background-color:#fff}.dialog-title{background-color:#607d8b;color:#fff;height:56px}.title-font{color:#fff;float:left;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:20px;line-height:56px;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;padding:0 16px;margin:0}.dialog-content{display:-webkit-flex;flex-grow:1;height:200px;position:relative}.description{border:none;box-sizing:border-box;box-shadow:none;color:#212121;flex-grow:1;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:16px;line-height:normal;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;max-width:100%;outline:0;padding:18px 16px 0;resize:none;width:100%;height:inherit}.description-tips{color:#bdbdbd;display:block;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:16px;line-height:normal;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;left:0;position:absolute;padding:18px 16px 0;right:0}.screenshot-checkbox{padding:0 16px;background-color:#f8f8f8;height:40px;display:flex;flex-direction:column;justify-content:center}.screenshot-content{border:none;cursor:pointer;text-align:center;display:block;position:relative;padding:0;overflow:hidden;height:192px;width:100%;background:#ededed}.screenshot-tips{align-items:center;background-color:rgba(248,248,248,.6);border-radius:4px;box-sizing:border-box;display:-webkit-flex;flex-direction:column;justify-content:center;min-height:112px;width:224px;z-index:5;position:absolute;top:50%;right:0;bottom:0;left:0;transform:translateY(-50%);margin:0 auto}.screenshot-content:hover .screenshot-tips{background-color:rgba(248,248,248,.8)}.screenshot-content:hover .screenshot-tips-content{color:#4285f4}.screenshot-content:hover svg{color:#4285f4;fill:currentColor}.screenshot-tips svg{color:#757575;fill:currentColor;height:48px;width:48px}.screenshot-tips-content{color:#757575;font-weight:400;font-size:14px;line-height:20px;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;margin-top:12px}.dialog-actions{border-top:1px solid #e0e0e0}.submit-button{margin-right:8px!important;margin-left:5px!important;color:#4285f4}.action-button{font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:14px;height:35px;line-height:normal;margin:10px 0;padding:0 8px;position:relative;min-width:75px}.loading{margin:0 auto;position:absolute;top:45%;bottom:0;left:0;right:0}.mat-dialog-actions{padding:0!important}::ng-deep .feedbackDialog .mat-dialog-container{padding:0;overflow:visible;background-color:rgba(255,255,255,0);box-shadow:initial}.toolbar-tips{background-color:rgba(255,255,255,.6);border-radius:12px;color:#757575;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:34px;line-height:40px;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;margin-top:calc(22px * 2 + 56px);margin-bottom:72px;padding:22px 0;text-align:center;visibility:visible;width:656px;height:auto;-webkit-animation:0s ease-in 5s forwards cssAnimation;animation:0s ease-in 5s forwards cssAnimation}@keyframes cssAnimation{to{width:0;height:0;overflow:hidden}}@-webkit-keyframes cssAnimation{to{width:0;height:0;visibility:hidden}}.drawCanvas{position:absolute;top:0;left:0;z-index:-1;margin:0 auto;cursor:crosshair}.pointerCursor{cursor:default!important}"]
-            }] }
-];
-/** @nocollapse */
-FeedbackDialogComponent.ctorParameters = () => [
-    { type: MatDialogRef },
-    { type: FeedbackService },
-    { type: ChangeDetectorRef },
-    { type: ElementRef }
-];
-FeedbackDialogComponent.propDecorators = {
-    screenshotParent: [{ type: ViewChild, args: ['screenshotParent', { static: false },] }],
-    onEscapeKeyDownHandler: [{ type: HostListener, args: ['document:keydown.escape', ['$event'],] }]
-};
-if (false) {
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.showToolbar;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.vars;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.feedback;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.includeScreenshot;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.showSpinner;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.screenshotEle;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.drawCanvas;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.showToolbarTips;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.screenshotParent;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.drawColor;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.rectangles;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDialogComponent.prototype.scrollWidth;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDialogComponent.prototype.scrollHeight;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDialogComponent.prototype.elCouldBeHighlighted;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDialogComponent.prototype.manuallyDrawRect$;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDialogComponent.prototype.autoDrawRect$;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.isDrawingRect;
-    /** @type {?} */
-    FeedbackDialogComponent.prototype.dialogRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDialogComponent.prototype.feedbackService;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDialogComponent.prototype.detector;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDialogComponent.prototype.el;
-}
+                templateUrl: './feedback-dialog.component.html',
+                styleUrls: ['./feedback-dialog.component.css']
+            }]
+    }], function () { return [{ type: MatDialogRef }, { type: FeedbackService }, { type: ChangeDetectorRef }, { type: ElementRef }]; }, { screenshotParent: [{
+            type: ViewChild,
+            args: ['screenshotParent']
+        }], onEscapeKeyDownHandler: [{
+            type: HostListener,
+            args: ['document:keydown.escape', ['$event']]
+        }] }); })();
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FeedbackToolbarComponent {
-    /**
-     * @param {?} el
-     * @param {?} feedbackService
-     */
-    constructor(el, feedbackService) {
-        this.el = el;
-        this.feedbackService = feedbackService;
-        this.manipulate = new EventEmitter();
-        this.disableToolbarTips = false;
-        this.isSwitch = false;
-        this.isDragging = false;
-        this.vars = {};
-        this.vars = feedbackService.initialVariables;
-    }
-    /**
-     * @return {?}
-     */
-    ngAfterViewInit() {
-        /** @type {?} */
-        const elStyle = this.el.nativeElement.style;
-        elStyle.position = 'absolute';
-        elStyle.left = '43%';
-        elStyle.top = '22px';
-        this.addDragListenerOnMoveBtn();
-    }
-    /**
-     * @return {?}
-     */
-    ngOnChanges() {
-        this.isSwitch = this.drawColor !== this.feedbackService.highlightedColor;
-    }
-    /**
-     * @return {?}
-     */
-    done() {
-        this.manipulate.emit('done');
-    }
-    /**
-     * @return {?}
-     */
-    toggleHighlight() {
-        this.isSwitch = false;
-        this.manipulate.emit(this.feedbackService.highlightedColor);
-    }
-    /**
-     * @return {?}
-     */
-    toggleHide() {
-        this.isSwitch = true;
-        this.manipulate.emit(this.feedbackService.hiddenColor);
-    }
-    /**
-     * @return {?}
-     */
-    addDragListenerOnMoveBtn() {
-        /** @type {?} */
-        const mouseUp = fromEvent(this.toggleMoveBtn.nativeElement, 'mouseup');
-        /** @type {?} */
-        const mouseMove = fromEvent(document.documentElement, 'mousemove');
-        /** @type {?} */
-        const mouseDown = fromEvent(this.toggleMoveBtn.nativeElement, 'mousedown');
-        /** @type {?} */
-        const mouseDrag = mouseDown.pipe(mergeMap((/**
-         * @param {?} md
-         * @return {?}
-         */
-        (md) => {
-            this.feedbackService.setIsDraggingToolbar(true);
-            /** @type {?} */
-            const startX = md.offsetX;
-            /** @type {?} */
-            const startY = md.offsetY;
-            this.disableToolbarTips = true;
-            this.isDragging = true;
-            // Calculate dif with mousemove until mouseup
-            return mouseMove.pipe(map((/**
-             * @param {?} mm
-             * @return {?}
-             */
-            (mm) => {
-                mm.preventDefault();
-                return {
-                    left: mm.clientX - startX,
-                    top: mm.clientY - startY
-                };
-            })), finalize((/**
-             * @return {?}
-             */
-            () => {
-                this.isDragging = false;
-                this.disableToolbarTips = false;
-                this.feedbackService.setIsDraggingToolbar(false);
-            })), takeUntil(mouseUp));
-        })));
-        mouseDrag.subscribe((/**
-         * @param {?} pos
-         * @return {?}
-         */
-        (pos) => {
-            this.el.nativeElement.style.left = pos.left + 'px';
-            this.el.nativeElement.style.top = pos.top + 'px';
-        }));
-    }
-}
-FeedbackToolbarComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'feedback-toolbar',
-                template: "<div exclude-rect=\"true\" class=\"toolbar\">\n  <div class=\"move-toolbar\" #toggleMove [matTooltip]=\"vars['moveToolbarTip']\" [matTooltipDisabled]=\"disableToolbarTips\">\n    <svg focusable=\"false\" aria-label=\"Drag\" fill=\"#BDBDBD\" height=\"56\" width=\"16\"\n         viewBox=\"-2 2 12 12\">\n      <circle cx=\"1.5\" cy=\"1.5\" r=\"1.5\"></circle>\n      <circle cx=\"1.5\" cy=\"7.5\" r=\"1.5\"></circle>\n      <circle cx=\"1.5\" cy=\"13.5\" r=\"1.5\"></circle>\n      <circle cx=\"6.5\" cy=\"1.5\" r=\"1.5\"></circle>\n      <circle cx=\"6.5\" cy=\"7.5\" r=\"1.5\"></circle>\n      <circle cx=\"6.5\" cy=\"13.5\" r=\"1.5\"></circle>\n    </svg>\n  </div>\n  <button #highlightBtn (click)=\"toggleHighlight()\" [matTooltip]=\"vars['highlightTip']\"\n          [matTooltipDisabled]=\"disableToolbarTips\" class=\"highlight-toggle\" [ngClass]=\"{'deepen-color': !isSwitch}\">\n    <span class=\"toggle\">\n      <svg focusable=\"false\" aria-label=\"\" viewBox=\"0 0 24 24\" height=\"36\" width=\"36\"\n           fill=\"#ffd740\">\n        <path d=\"M3 3h18v18H3z\"></path>\n      </svg>\n\n      <svg focusable=\"false\" aria-label=\"\" fill=\"#757575\" viewBox=\"0 0 24 24\"\n           height=\"36\" width=\"36\" [ngClass]=\"{'toggle-decorator': !isSwitch}\" *ngIf=\"!isSwitch\">\n        <path\n          d=\"M21 17h-2.58l2.51 2.56c-.18.69-.73 1.26-1.41 1.44L17 18.5V21h-2v-6h6v2zM19 7h2v2h-2V7zm2-2h-2V3.08c1.1 0 2 .92 2 1.92zm-6-2h2v2h-2V3zm4 8h2v2h-2v-2zM9 21H7v-2h2v2zM5 9H3V7h2v2zm0-5.92V5H3c0-1 1-1.92 2-1.92zM5 17H3v-2h2v2zM9 5H7V3h2v2zm4 0h-2V3h2v2zm0 16h-2v-2h2v2zm-8-8H3v-2h2v2zm0 8.08C3.9 21.08 3 20 3 19h2v2.08z\"></path>\n      </svg>\n    </span>\n  </button>\n  <button (click)=\"toggleHide()\" [matTooltip]=\"vars['hideTip']\" [matTooltipDisabled]=\"disableToolbarTips\"\n          class=\"hide-toggle\" [ngClass]=\"{'deepen-color': isSwitch}\">\n    <span class=\"toggle\">\n      <svg focusable=\"false\" aria-label=\"\" viewBox=\"0 0 24 24\" height=\"36\" width=\"36\"\n           fill=\"#000\">\n        <path d=\"M3 3h18v18H3z\"></path>\n      </svg>\n      <svg focusable=\"false\" aria-label=\"\" fill=\"#757575\" viewBox=\"0 0 24 24\"\n           height=\"36\" width=\"36\" [ngClass]=\"{'toggle-decorator': isSwitch}\" *ngIf=\"isSwitch\">\n        <path\n          d=\"M21 17h-2.58l2.51 2.56c-.18.69-.73 1.26-1.41 1.44L17 18.5V21h-2v-6h6v2zM19 7h2v2h-2V7zm2-2h-2V3.08c1.1 0 2 .92 2 1.92zm-6-2h2v2h-2V3zm4 8h2v2h-2v-2zM9 21H7v-2h2v2zM5 9H3V7h2v2zm0-5.92V5H3c0-1 1-1.92 2-1.92zM5 17H3v-2h2v2zM9 5H7V3h2v2zm4 0h-2V3h2v2zm0 16h-2v-2h2v2zm-8-8H3v-2h2v2zm0 8.08C3.9 21.08 3 20 3 19h2v2.08z\"></path>\n      </svg>\n    </span>\n  </button>\n  <button mat-button class=\"merge-button\" (click)=\"done()\">{{vars['editDoneLabel']}}</button>\n</div>\n",
-                styles: [".toolbar{align-items:center;background-color:#fff;border-radius:2px;box-shadow:rgba(0,0,0,.14) 0 24px 38px 3px,rgba(0,0,0,.12) 0 9px 46px 8px,rgba(0,0,0,.2) 0 11px 15px -7px;cursor:pointer;display:-webkit-inline-flex;flex-direction:row;height:56px;min-width:232px;pointer-events:auto;overflow:visible;position:absolute;margin:0 auto;width:228px;bottom:0;top:25%;left:0;right:0;z-index:999}.move-toolbar{cursor:-webkit-grab;height:56px;padding:0 12px;position:relative}.move-toolbar:active{cursor:-webkit-grabbing}.toggle{display:inline-block;position:relative;height:36px;width:36px}.toggle-decorator{left:0;position:absolute;top:0}.highlight-toggle{align-items:center;background-color:#fff;border:none;box-sizing:border-box;cursor:pointer;display:-webkit-flex;justify-content:center;outline:0;padding:10px;pointer-events:auto;position:relative;height:56px;width:56px}.deepen-color{background-color:#e0e0e0!important}.hide-toggle{align-items:center;background-color:#fff;border:none;box-sizing:border-box;cursor:pointer;display:-webkit-flex;justify-content:center;outline:0;padding:10px;pointer-events:auto;position:relative;height:56px;width:56px}.merge-button{padding:0!important;margin:0 10px!important;min-width:56px;color:#4285f4}"]
-            }] }
-];
-/** @nocollapse */
-FeedbackToolbarComponent.ctorParameters = () => [
-    { type: ElementRef },
-    { type: FeedbackService }
-];
-FeedbackToolbarComponent.propDecorators = {
-    drawColor: [{ type: Input }],
-    manipulate: [{ type: Output }],
-    toggleMoveBtn: [{ type: ViewChild, args: ['toggleMove', { static: true },] }]
-};
-if (false) {
-    /** @type {?} */
-    FeedbackToolbarComponent.prototype.drawColor;
-    /** @type {?} */
-    FeedbackToolbarComponent.prototype.manipulate;
-    /** @type {?} */
-    FeedbackToolbarComponent.prototype.disableToolbarTips;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackToolbarComponent.prototype.toggleMoveBtn;
-    /** @type {?} */
-    FeedbackToolbarComponent.prototype.isSwitch;
-    /** @type {?} */
-    FeedbackToolbarComponent.prototype.isDragging;
-    /** @type {?} */
-    FeedbackToolbarComponent.prototype.vars;
-    /** @type {?} */
-    FeedbackToolbarComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackToolbarComponent.prototype.feedbackService;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FeedbackRectangleComponent {
-    /**
-     * @param {?} feedbackService
-     */
-    constructor(feedbackService) {
-        this.feedbackService = feedbackService;
-        this.close = new EventEmitter();
-        this.showCloseTag = false;
-    }
-    /**
-     * @return {?}
-     */
-    onMouseEnter() {
-        this.showCloseTag = this.noHover === false;
-    }
-    /**
-     * @return {?}
-     */
-    onMouseLeave() {
-        this.showCloseTag = false;
-    }
-    /**
-     * @return {?}
-     */
-    onClose() {
-        this.close.emit();
-    }
-}
-FeedbackRectangleComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'feedback-rectangle',
-                template: "<div exclude-rect=\"true\" class=\"rect\" [ngStyle]=\"{'left.px': rectangle.startX,\n                              'top.px': rectangle.startY,\n                              'width.px': rectangle.width ,\n                              'height.px': rectangle.height }\"\n    [ngClass]=\"{'highlight': rectangle.color === feedbackService.highlightedColor,\n                'hide': rectangle.color !== feedbackService.highlightedColor,\n                'noHover': noHover}\">\n  <span exclude-rect=\"true\" class=\"close\" *ngIf=\"showCloseTag\" (click)=\"onClose()\">\n    <svg viewBox=\"0 0 1024 1024\"\n         width=\"16\" height=\"16\">\n        <path\n          d=\"M896 224l-96-96-288 288-288-288-96 96 288 288-288 288 96 96 288-288 288 288 96-96-288-288 288-288z\"></path>\n    </svg>\n  </span>\n</div>\n",
-                styles: [".rect{position:fixed;background:0 0;z-index:3}.highlight:not(.noHover):hover{cursor:default;background:rgba(55,131,249,.2)}.hide{background-color:#000}.hide:not(.noHover):hover{background-color:rgba(31,31,31,.75)}.rect .close{width:24px;height:24px;background:#fff;border-radius:50%;justify-content:center;align-items:center;color:#999;position:absolute;right:-12px;top:-12px;cursor:pointer;display:flex;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}"]
-            }] }
-];
-/** @nocollapse */
-FeedbackRectangleComponent.ctorParameters = () => [
-    { type: FeedbackService }
-];
-FeedbackRectangleComponent.propDecorators = {
-    rectangle: [{ type: Input }],
-    noHover: [{ type: Input }],
-    close: [{ type: Output }],
-    onMouseEnter: [{ type: HostListener, args: ['mouseenter',] }],
-    onMouseLeave: [{ type: HostListener, args: ['mouseleave',] }]
-};
-if (false) {
-    /** @type {?} */
-    FeedbackRectangleComponent.prototype.rectangle;
-    /** @type {?} */
-    FeedbackRectangleComponent.prototype.noHover;
-    /** @type {?} */
-    FeedbackRectangleComponent.prototype.close;
-    /** @type {?} */
-    FeedbackRectangleComponent.prototype.showCloseTag;
-    /** @type {?} */
-    FeedbackRectangleComponent.prototype.feedbackService;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class FeedbackDirective {
-    /**
-     * @param {?} dialogRef
-     * @param {?} feedbackService
-     * @param {?} overlay
-     */
     constructor(dialogRef, feedbackService, overlay) {
         this.dialogRef = dialogRef;
         this.feedbackService = feedbackService;
@@ -949,24 +751,14 @@ class FeedbackDirective {
         this.hideTip = 'hide sensitive info';
         this.editDoneLabel = 'DONE';
         this.send = new EventEmitter();
-        this.feedbackService.feedback$.subscribe((/**
-         * @param {?} feedback
-         * @return {?}
-         */
-        (feedback) => {
+        this.feedbackService.feedback$.subscribe((feedback) => {
             this.send.emit(feedback);
-        }));
+        });
         this.overlay = overlay;
     }
-    /**
-     * @return {?}
-     */
     onClick() {
         this.openFeedbackDialog();
     }
-    /**
-     * @return {?}
-     */
     openFeedbackDialog() {
         this.feedbackService.initScreenshotCanvas();
         this.dialogRef.open(FeedbackDialogComponent, {
@@ -978,9 +770,6 @@ class FeedbackDirective {
             scrollStrategy: this.overlay.scrollStrategies.reposition()
         });
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         this.feedbackService.initialVariables = {
             title: this.title,
@@ -997,80 +786,73 @@ class FeedbackDirective {
         };
     }
 }
-FeedbackDirective.decorators = [
-    { type: Directive, args: [{ selector: '[feedback]' },] }
-];
-/** @nocollapse */
-FeedbackDirective.ctorParameters = () => [
-    { type: MatDialog },
-    { type: FeedbackService },
-    { type: Overlay }
-];
-FeedbackDirective.propDecorators = {
-    title: [{ type: Input }],
-    placeholder: [{ type: Input }],
-    editTip: [{ type: Input }],
-    checkboxLabel: [{ type: Input }],
-    cancelLabel: [{ type: Input }],
-    sendLabel: [{ type: Input }],
-    moveToolbarTip: [{ type: Input }],
-    drawRectTip: [{ type: Input }],
-    highlightTip: [{ type: Input }],
-    hideTip: [{ type: Input }],
-    editDoneLabel: [{ type: Input }],
-    send: [{ type: Output }],
-    onClick: [{ type: HostListener, args: ['click',] }]
-};
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDirective.prototype.overlay;
-    /** @type {?} */
-    FeedbackDirective.prototype.title;
-    /** @type {?} */
-    FeedbackDirective.prototype.placeholder;
-    /** @type {?} */
-    FeedbackDirective.prototype.editTip;
-    /** @type {?} */
-    FeedbackDirective.prototype.checkboxLabel;
-    /** @type {?} */
-    FeedbackDirective.prototype.cancelLabel;
-    /** @type {?} */
-    FeedbackDirective.prototype.sendLabel;
-    /** @type {?} */
-    FeedbackDirective.prototype.moveToolbarTip;
-    /** @type {?} */
-    FeedbackDirective.prototype.drawRectTip;
-    /** @type {?} */
-    FeedbackDirective.prototype.highlightTip;
-    /** @type {?} */
-    FeedbackDirective.prototype.hideTip;
-    /** @type {?} */
-    FeedbackDirective.prototype.editDoneLabel;
-    /** @type {?} */
-    FeedbackDirective.prototype.send;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDirective.prototype.dialogRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    FeedbackDirective.prototype.feedbackService;
-}
+FeedbackDirective.ɵfac = function FeedbackDirective_Factory(t) { return new (t || FeedbackDirective)(ɵɵdirectiveInject(MatDialog), ɵɵdirectiveInject(FeedbackService), ɵɵdirectiveInject(Overlay)); };
+FeedbackDirective.ɵdir = ɵɵdefineDirective({ type: FeedbackDirective, selectors: [["", "feedback", ""]], hostBindings: function FeedbackDirective_HostBindings(rf, ctx) { if (rf & 1) {
+        ɵɵlistener("click", function FeedbackDirective_click_HostBindingHandler() { return ctx.onClick(); });
+    } }, inputs: { title: "title", placeholder: "placeholder", editTip: "editTip", checkboxLabel: "checkboxLabel", cancelLabel: "cancelLabel", sendLabel: "sendLabel", moveToolbarTip: "moveToolbarTip", drawRectTip: "drawRectTip", highlightTip: "highlightTip", hideTip: "hideTip", editDoneLabel: "editDoneLabel" }, outputs: { send: "send" } });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(FeedbackDirective, [{
+        type: Directive,
+        args: [{ selector: '[feedback]' }]
+    }], function () { return [{ type: MatDialog }, { type: FeedbackService }, { type: Overlay }]; }, { title: [{
+            type: Input
+        }], placeholder: [{
+            type: Input
+        }], editTip: [{
+            type: Input
+        }], checkboxLabel: [{
+            type: Input
+        }], cancelLabel: [{
+            type: Input
+        }], sendLabel: [{
+            type: Input
+        }], moveToolbarTip: [{
+            type: Input
+        }], drawRectTip: [{
+            type: Input
+        }], highlightTip: [{
+            type: Input
+        }], hideTip: [{
+            type: Input
+        }], editDoneLabel: [{
+            type: Input
+        }], send: [{
+            type: Output
+        }], onClick: [{
+            type: HostListener,
+            args: ['click']
+        }] }); })();
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class FeedbackModule {
 }
-FeedbackModule.decorators = [
-    { type: NgModule, args: [{
+FeedbackModule.ɵmod = ɵɵdefineNgModule({ type: FeedbackModule });
+FeedbackModule.ɵinj = ɵɵdefineInjector({ factory: function FeedbackModule_Factory(t) { return new (t || FeedbackModule)(); }, providers: [
+        FeedbackService
+    ], imports: [[
+            MatDialogModule,
+            MatButtonModule,
+            MatIconModule,
+            MatInputModule,
+            MatTooltipModule,
+            CommonModule,
+            FormsModule,
+            MatCheckboxModule,
+            MatProgressSpinnerModule
+        ]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(FeedbackModule, { declarations: [FeedbackDialogComponent,
+        FeedbackToolbarComponent,
+        FeedbackRectangleComponent,
+        FeedbackDirective], imports: [MatDialogModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+        MatTooltipModule,
+        CommonModule,
+        FormsModule,
+        MatCheckboxModule,
+        MatProgressSpinnerModule], exports: [FeedbackDirective] }); })();
+/*@__PURE__*/ (function () { ɵsetClassMetadata(FeedbackModule, [{
+        type: NgModule,
+        args: [{
                 declarations: [
                     FeedbackDialogComponent,
                     FeedbackToolbarComponent,
@@ -1097,18 +879,16 @@ FeedbackModule.decorators = [
                 providers: [
                     FeedbackService
                 ]
-            },] }
-];
+            }]
+    }], null, null); })();
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+/*
+ * Public API Surface of ng-feedback
  */
 
 /**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
-export { Feedback, FeedbackModule, FeedbackDialogComponent as ɵa, FeedbackService as ɵb, FeedbackToolbarComponent as ɵc, FeedbackRectangleComponent as ɵd, FeedbackDirective as ɵe };
+export { Feedback, FeedbackDirective, FeedbackModule };
 //# sourceMappingURL=ng-feedback.js.map

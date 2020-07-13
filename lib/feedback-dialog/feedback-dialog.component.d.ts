@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Feedback } from '../entity/feedback';
 import { Rectangle } from '../entity/rectangle';
 import { FeedbackService } from '../feedback.service';
+import * as i0 from "@angular/core";
 export declare class FeedbackDialogComponent implements AfterViewInit {
     dialogRef: MatDialogRef<FeedbackDialogComponent>;
     private feedbackService;
@@ -45,4 +46,6 @@ export declare class FeedbackDialogComponent implements AfterViewInit {
     private drawTempCanvasRectangle;
     closeRect(index: number): void;
     private isExcludeRect;
+    static ɵfac: i0.ɵɵFactoryDef<FeedbackDialogComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<FeedbackDialogComponent, "feedback-dialog", never, {}, {}, never, never>;
 }
