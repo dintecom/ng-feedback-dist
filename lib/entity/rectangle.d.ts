@@ -7,3 +7,4 @@ export declare class Rectangle {
     windowScrollY: number;
     windowScrollX: number;
 }
+//# sourceMappingURL=rectangle.d.ts.map

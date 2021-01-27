@@ -21,3 +21,4 @@ export declare class FeedbackToolbarComponent implements AfterViewInit, OnChange
     static ɵfac: i0.ɵɵFactoryDef<FeedbackToolbarComponent, never>;
     static ɵcmp: i0.ɵɵComponentDefWithMeta<FeedbackToolbarComponent, "feedback-toolbar", never, { "drawColor": "drawColor"; }, { "manipulate": "manipulate"; }, never, never>;
 }
+//# sourceMappingURL=feedback-toolbar.component.d.ts.map

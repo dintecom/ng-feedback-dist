@@ -1,10 +1,12 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('@angular/material/button'), require('@angular/material/checkbox'), require('@angular/material/dialog'), require('@angular/material/icon'), require('@angular/material/input'), require('@angular/material/progress-spinner'), require('@angular/material/tooltip'), require('rxjs'), require('rxjs/operators'), require('html2canvas'), require('@angular/cdk/overlay')) :
     typeof define === 'function' && define.amd ? define('ng-feedback', ['exports', '@angular/core', '@angular/common', '@angular/forms', '@angular/material/button', '@angular/material/checkbox', '@angular/material/dialog', '@angular/material/icon', '@angular/material/input', '@angular/material/progress-spinner', '@angular/material/tooltip', 'rxjs', 'rxjs/operators', 'html2canvas', '@angular/cdk/overlay'], factory) :
-    (global = global || self, factory(global['ng-feedback'] = {}, global.ng.core, global.ng.common, global.ng.forms, global.ng.material.button, global.ng.material.checkbox, global.ng.material.dialog, global.ng.material.icon, global.ng.material.input, global.ng.material.progressSpinner, global.ng.material.tooltip, global.rxjs, global.rxjs.operators, global.html2canvas, global.ng.cdk.overlay));
-}(this, (function (exports, i0, i3, i4, i4$1, i5, i1, icon, input, i7, i2, rxjs, operators, html2canvas, i3$1) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['ng-feedback'] = {}, global.ng.core, global.ng.common, global.ng.forms, global.ng.material.button, global.ng.material.checkbox, global.ng.material.dialog, global.ng.material.icon, global.ng.material.input, global.ng.material.progressSpinner, global.ng.material.tooltip, global.rxjs, global.rxjs.operators, global.html2canvas, global.ng.cdk.overlay));
+}(this, (function (exports, i0, i3, i4$1, i4, i5, i1, icon, input, i7, i2, rxjs, operators, html2canvas, i3$1) { 'use strict';
 
-    html2canvas = html2canvas && Object.prototype.hasOwnProperty.call(html2canvas, 'default') ? html2canvas['default'] : html2canvas;
+    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+    var html2canvas__default = /*#__PURE__*/_interopDefaultLegacy(html2canvas);
 
     var Feedback = /** @class */ (function () {
         function Feedback() {
@@ -35,7 +37,7 @@
         FeedbackService.prototype.initScreenshotCanvas = function () {
             var _this = this;
             var body = document.body;
-            html2canvas(body, {
+            html2canvas__default['default'](body, {
                 logging: false,
                 width: document.documentElement.clientWidth,
                 height: document.documentElement.clientHeight,
@@ -86,8 +88,8 @@
     }());
     FeedbackService.ɵfac = function FeedbackService_Factory(t) { return new (t || FeedbackService)(); };
     FeedbackService.ɵprov = i0.ɵɵdefineInjectable({ token: FeedbackService, factory: FeedbackService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(FeedbackService, [{
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FeedbackService, [{
                 type: i0.Injectable
             }], null, null);
     })();
@@ -185,10 +187,10 @@
     FeedbackToolbarComponent.ɵfac = function FeedbackToolbarComponent_Factory(t) { return new (t || FeedbackToolbarComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(FeedbackService)); };
     FeedbackToolbarComponent.ɵcmp = i0.ɵɵdefineComponent({ type: FeedbackToolbarComponent, selectors: [["feedback-toolbar"]], viewQuery: function FeedbackToolbarComponent_Query(rf, ctx) {
             if (rf & 1) {
-                i0.ɵɵstaticViewQuery(_c0, true);
+                i0.ɵɵviewQuery(_c0, 3);
             }
             if (rf & 2) {
-                var _t;
+                var _t = void 0;
                 i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.toggleMoveBtn = _t.first);
             }
         }, inputs: { drawColor: "drawColor" }, outputs: { manipulate: "manipulate" }, features: [i0.ɵɵNgOnChangesFeature], decls: 23, vars: 15, consts: [["exclude-rect", "true", 1, "toolbar"], [1, "move-toolbar", 3, "matTooltip", "matTooltipDisabled"], ["toggleMove", ""], ["focusable", "false", "aria-label", "Drag", "fill", "#BDBDBD", "height", "56", "width", "16", "viewBox", "-2 2 12 12"], ["cx", "1.5", "cy", "1.5", "r", "1.5"], ["cx", "1.5", "cy", "7.5", "r", "1.5"], ["cx", "1.5", "cy", "13.5", "r", "1.5"], ["cx", "6.5", "cy", "1.5", "r", "1.5"], ["cx", "6.5", "cy", "7.5", "r", "1.5"], ["cx", "6.5", "cy", "13.5", "r", "1.5"], [1, "highlight-toggle", 3, "matTooltip", "matTooltipDisabled", "ngClass", "click"], ["highlightBtn", ""], [1, "toggle"], ["focusable", "false", "aria-label", "", "viewBox", "0 0 24 24", "height", "36", "width", "36", "fill", "#ffd740"], ["d", "M3 3h18v18H3z"], ["focusable", "false", "aria-label", "", "fill", "#757575", "viewBox", "0 0 24 24", "height", "36", "width", "36", 3, "ngClass", 4, "ngIf"], [1, "hide-toggle", 3, "matTooltip", "matTooltipDisabled", "ngClass", "click"], ["focusable", "false", "aria-label", "", "viewBox", "0 0 24 24", "height", "36", "width", "36", "fill", "#000"], ["mat-button", "", 1, "merge-button", 3, "click"], ["focusable", "false", "aria-label", "", "fill", "#757575", "viewBox", "0 0 24 24", "height", "36", "width", "36", 3, "ngClass"], ["d", "M21 17h-2.58l2.51 2.56c-.18.69-.73 1.26-1.41 1.44L17 18.5V21h-2v-6h6v2zM19 7h2v2h-2V7zm2-2h-2V3.08c1.1 0 2 .92 2 1.92zm-6-2h2v2h-2V3zm4 8h2v2h-2v-2zM9 21H7v-2h2v2zM5 9H3V7h2v2zm0-5.92V5H3c0-1 1-1.92 2-1.92zM5 17H3v-2h2v2zM9 5H7V3h2v2zm4 0h-2V3h2v2zm0 16h-2v-2h2v2zm-8-8H3v-2h2v2zm0 8.08C3.9 21.08 3 20 3 19h2v2.08z"]], template: function FeedbackToolbarComponent_Template(rf, ctx) {
@@ -248,9 +250,9 @@
                 i0.ɵɵadvance(2);
                 i0.ɵɵtextInterpolate(ctx.vars["editDoneLabel"]);
             }
-        }, directives: [i2.MatTooltip, i3.NgClass, i3.NgIf, i4$1.MatButton], styles: [".toolbar[_ngcontent-%COMP%]{align-items:center;background-color:#fff;border-radius:2px;bottom:0;box-shadow:0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12),0 11px 15px -7px rgba(0,0,0,.2);cursor:pointer;display:-webkit-inline-flex;flex-direction:row;height:56px;left:0;margin:0 auto;min-width:232px;overflow:visible;pointer-events:auto;position:absolute;right:0;top:25%;width:228px;z-index:999}.move-toolbar[_ngcontent-%COMP%]{cursor:-webkit-grab;height:56px;padding:0 12px;position:relative}.move-toolbar[_ngcontent-%COMP%]:active{cursor:-webkit-grabbing}.toggle[_ngcontent-%COMP%]{display:inline-block;height:36px;position:relative;width:36px}.toggle-decorator[_ngcontent-%COMP%]{left:0;position:absolute;top:0}.highlight-toggle[_ngcontent-%COMP%]{align-items:center;background-color:#fff;border:none;box-sizing:border-box;cursor:pointer;display:-webkit-flex;height:56px;justify-content:center;outline:none;padding:10px;pointer-events:auto;position:relative;width:56px}.deepen-color[_ngcontent-%COMP%]{background-color:#e0e0e0!important}.hide-toggle[_ngcontent-%COMP%]{align-items:center;background-color:#fff;border:none;box-sizing:border-box;cursor:pointer;display:-webkit-flex;height:56px;justify-content:center;outline:none;padding:10px;pointer-events:auto;position:relative;width:56px}.merge-button[_ngcontent-%COMP%]{color:#4285f4;margin:0 10px!important;min-width:56px;padding:0!important}"] });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(FeedbackToolbarComponent, [{
+        }, directives: [i2.MatTooltip, i3.NgClass, i3.NgIf, i4.MatButton], styles: [".toolbar[_ngcontent-%COMP%]{align-items:center;background-color:#fff;border-radius:2px;bottom:0;box-shadow:0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12),0 11px 15px -7px rgba(0,0,0,.2);cursor:pointer;display:-webkit-inline-flex;flex-direction:row;height:56px;left:0;margin:0 auto;min-width:232px;overflow:visible;pointer-events:auto;position:absolute;right:0;top:25%;width:228px;z-index:999}.move-toolbar[_ngcontent-%COMP%]{cursor:-webkit-grab;height:56px;padding:0 12px;position:relative}.move-toolbar[_ngcontent-%COMP%]:active{cursor:-webkit-grabbing}.toggle[_ngcontent-%COMP%]{display:inline-block;height:36px;position:relative;width:36px}.toggle-decorator[_ngcontent-%COMP%]{left:0;position:absolute;top:0}.highlight-toggle[_ngcontent-%COMP%]{align-items:center;background-color:#fff;border:none;box-sizing:border-box;cursor:pointer;display:-webkit-flex;height:56px;justify-content:center;outline:none;padding:10px;pointer-events:auto;position:relative;width:56px}.deepen-color[_ngcontent-%COMP%]{background-color:#e0e0e0!important}.hide-toggle[_ngcontent-%COMP%]{align-items:center;background-color:#fff;border:none;box-sizing:border-box;cursor:pointer;display:-webkit-flex;height:56px;justify-content:center;outline:none;padding:10px;pointer-events:auto;position:relative;width:56px}.merge-button[_ngcontent-%COMP%]{color:#4285f4;margin:0 10px!important;min-width:56px;padding:0!important}"] });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FeedbackToolbarComponent, [{
                 type: i0.Component,
                 args: [{
                         selector: 'feedback-toolbar',
@@ -314,9 +316,9 @@
                 i0.ɵɵadvance(1);
                 i0.ɵɵproperty("ngIf", ctx.showCloseTag);
             }
-        }, directives: [i3.NgStyle, i3.NgClass, i3.NgIf], styles: [".rect[_ngcontent-%COMP%]{background:none;position:fixed;z-index:3}.highlight[_ngcontent-%COMP%]:not(.noHover):hover{background:rgba(55,131,249,.2);cursor:default}.hide[_ngcontent-%COMP%]{background-color:#000}.hide[_ngcontent-%COMP%]:not(.noHover):hover{background-color:rgba(31,31,31,.75)}.rect[_ngcontent-%COMP%]   .close[_ngcontent-%COMP%]{-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;align-items:center;background:#fff;border-radius:50%;color:#999;cursor:pointer;display:flex;height:24px;justify-content:center;position:absolute;right:-12px;top:-12px;user-select:none;width:24px}"] });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(FeedbackRectangleComponent, [{
+        }, directives: [i3.NgStyle, i3.NgClass, i3.NgIf], styles: [".rect[_ngcontent-%COMP%]{background:none;position:fixed;z-index:3}.highlight[_ngcontent-%COMP%]:not(.noHover):hover{background:rgba(55,131,249,.2);cursor:default}.hide[_ngcontent-%COMP%]{background-color:#000}.hide[_ngcontent-%COMP%]:not(.noHover):hover{background-color:rgba(31,31,31,.75)}.rect[_ngcontent-%COMP%]   .close[_ngcontent-%COMP%]{-moz-user-select:none;-webkit-user-select:none;align-items:center;background:#fff;border-radius:50%;color:#999;cursor:pointer;display:flex;height:24px;justify-content:center;position:absolute;right:-12px;top:-12px;user-select:none;width:24px}"] });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FeedbackRectangleComponent, [{
                 type: i0.Component,
                 args: [{
                         selector: 'feedback-rectangle',
@@ -756,10 +758,10 @@
     FeedbackDialogComponent.ɵfac = function FeedbackDialogComponent_Factory(t) { return new (t || FeedbackDialogComponent)(i0.ɵɵdirectiveInject(i1.MatDialogRef), i0.ɵɵdirectiveInject(FeedbackService), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(i0.ElementRef)); };
     FeedbackDialogComponent.ɵcmp = i0.ɵɵdefineComponent({ type: FeedbackDialogComponent, selectors: [["feedback-dialog"]], viewQuery: function FeedbackDialogComponent_Query(rf, ctx) {
             if (rf & 1) {
-                i0.ɵɵviewQuery(_c0$2, true);
+                i0.ɵɵviewQuery(_c0$2, 1);
             }
             if (rf & 2) {
-                var _t;
+                var _t = void 0;
                 i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.screenshotParent = _t.first);
             }
         }, hostBindings: function FeedbackDialogComponent_HostBindings(rf, ctx) {
@@ -782,9 +784,9 @@
                 i0.ɵɵadvance(1);
                 i0.ɵɵproperty("ngClass", i0.ɵɵpureFunction1(4, _c1$2, !ctx.showToolbar));
             }
-        }, directives: [i3.NgIf, i3.NgForOf, i3.NgClass, i4.DefaultValueAccessor, i4.NgControlStatus, i4.NgModel, i5.MatCheckbox, i1.MatDialogActions, i4$1.MatButton, i7.MatSpinner, FeedbackToolbarComponent, FeedbackRectangleComponent], styles: [".dialog[_ngcontent-%COMP%]{background-color:#fff;position:relative;width:360px;z-index:1000}.dialog-title[_ngcontent-%COMP%]{background-color:#607d8b;color:#fff;height:56px}.title-font[_ngcontent-%COMP%]{color:#fff;float:left;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:20px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:300;line-height:56px;margin:0;padding:0 16px}.dialog-content[_ngcontent-%COMP%]{display:-webkit-flex;flex-grow:1;height:200px;position:relative}.description[_ngcontent-%COMP%]{border:none;box-shadow:none;box-sizing:border-box;color:#212121;flex-grow:1;height:inherit;max-width:100%;outline:none;resize:none;width:100%}.description[_ngcontent-%COMP%], .description-tips[_ngcontent-%COMP%]{font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:16px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:400;line-height:normal;padding:18px 16px 0}.description-tips[_ngcontent-%COMP%]{color:#bdbdbd;display:block;left:0;position:absolute;right:0}.screenshot-checkbox[_ngcontent-%COMP%]{background-color:#f8f8f8;display:flex;flex-direction:column;height:40px;justify-content:center;padding:0 16px}.screenshot-content[_ngcontent-%COMP%]{background:#ededed none;border:none;cursor:pointer;display:block;height:192px;overflow:hidden;padding:0;position:relative;text-align:center;width:100%}.screenshot-tips[_ngcontent-%COMP%]{align-items:center;background-color:hsla(0,0%,97.3%,.6);border-radius:4px;bottom:0;box-sizing:border-box;display:-webkit-flex;flex-direction:column;justify-content:center;left:0;margin:0 auto;min-height:112px;position:absolute;right:0;top:50%;transform:translateY(-50%);width:224px;z-index:5}.screenshot-content[_ngcontent-%COMP%]:hover   .screenshot-tips[_ngcontent-%COMP%]{background-color:hsla(0,0%,97.3%,.8)}.screenshot-content[_ngcontent-%COMP%]:hover   .screenshot-tips-content[_ngcontent-%COMP%]{color:#4285f4}.screenshot-content[_ngcontent-%COMP%]:hover   svg[_ngcontent-%COMP%]{color:#4285f4;fill:currentColor}.screenshot-tips[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%]{color:#757575;fill:currentColor;height:48px;width:48px}.screenshot-tips-content[_ngcontent-%COMP%]{color:#757575;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;line-height:20px;margin-top:12px}.dialog-actions[_ngcontent-%COMP%]{border-top:1px solid #e0e0e0}.submit-button[_ngcontent-%COMP%]{color:#4285f4;margin-left:5px!important;margin-right:8px!important}.action-button[_ngcontent-%COMP%]{font-size:14px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:500;height:35px;line-height:normal;margin:10px 0;min-width:75px;padding:0 8px;position:relative}.loading[_ngcontent-%COMP%]{bottom:0;left:0;margin:0 auto;position:absolute;right:0;top:45%}.mat-dialog-actions[_ngcontent-%COMP%]{padding:0!important}  .feedbackDialog .mat-dialog-container{background-color:hsla(0,0%,100%,0);box-shadow:none;overflow:visible;padding:0}.toolbar-tips[_ngcontent-%COMP%]{-webkit-animation:cssAnimation 0s ease-in 5s forwards;-webkit-animation-fill-mode:forwards;animation:cssAnimation 0s ease-in 5s forwards;animation-fill-mode:forwards;background-color:hsla(0,0%,100%,.6);border-radius:12px;color:#757575;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:34px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:400;height:auto;line-height:40px;margin-bottom:72px;padding:22px 0;text-align:center;visibility:visible;width:656px}@keyframes cssAnimation{to{height:0;overflow:hidden;width:0}}@-webkit-keyframes cssAnimation{to{height:0;visibility:hidden;width:0}}.drawCanvas[_ngcontent-%COMP%]{cursor:crosshair;left:0;margin:0 auto;position:absolute;top:0;z-index:-1}.pointerCursor[_ngcontent-%COMP%]{cursor:default!important}"] });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(FeedbackDialogComponent, [{
+        }, directives: [i3.NgIf, i3.NgForOf, i3.NgClass, i4$1.DefaultValueAccessor, i4$1.NgControlStatus, i4$1.NgModel, i5.MatCheckbox, i1.MatDialogActions, i4.MatButton, i7.MatSpinner, FeedbackToolbarComponent, FeedbackRectangleComponent], styles: [".dialog[_ngcontent-%COMP%]{background-color:#fff;position:relative;width:360px;z-index:1000}.dialog-title[_ngcontent-%COMP%]{background-color:#607d8b;color:#fff;height:56px}.title-font[_ngcontent-%COMP%]{color:#fff;float:left;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:20px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:300;line-height:56px;margin:0;padding:0 16px}.dialog-content[_ngcontent-%COMP%]{display:-webkit-flex;flex-grow:1;height:200px;position:relative}.description[_ngcontent-%COMP%]{border:none;box-shadow:none;box-sizing:border-box;color:#212121;flex-grow:1;height:inherit;max-width:100%;outline:none;resize:none;width:100%}.description[_ngcontent-%COMP%], .description-tips[_ngcontent-%COMP%]{font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:16px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:400;line-height:normal;padding:18px 16px 0}.description-tips[_ngcontent-%COMP%]{color:#bdbdbd;display:block;left:0;position:absolute;right:0}.screenshot-checkbox[_ngcontent-%COMP%]{background-color:#f8f8f8;display:flex;flex-direction:column;height:40px;justify-content:center;padding:0 16px}.screenshot-content[_ngcontent-%COMP%]{background:#ededed none;border:none;cursor:pointer;display:block;height:192px;overflow:hidden;padding:0;position:relative;text-align:center;width:100%}.screenshot-tips[_ngcontent-%COMP%]{align-items:center;background-color:hsla(0,0%,97.3%,.6);border-radius:4px;bottom:0;box-sizing:border-box;display:-webkit-flex;flex-direction:column;justify-content:center;left:0;margin:0 auto;min-height:112px;position:absolute;right:0;top:50%;transform:translateY(-50%);width:224px;z-index:5}.screenshot-content[_ngcontent-%COMP%]:hover   .screenshot-tips[_ngcontent-%COMP%]{background-color:hsla(0,0%,97.3%,.8)}.screenshot-content[_ngcontent-%COMP%]:hover   .screenshot-tips-content[_ngcontent-%COMP%]{color:#4285f4}.screenshot-content[_ngcontent-%COMP%]:hover   svg[_ngcontent-%COMP%]{color:#4285f4;fill:currentColor}.screenshot-tips[_ngcontent-%COMP%]   svg[_ngcontent-%COMP%]{color:#757575;fill:currentColor;height:48px;width:48px}.screenshot-tips-content[_ngcontent-%COMP%]{color:#757575;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;line-height:20px;margin-top:12px}.dialog-actions[_ngcontent-%COMP%]{border-top:1px solid #e0e0e0}.submit-button[_ngcontent-%COMP%]{color:#4285f4;margin-left:5px!important;margin-right:8px!important}.action-button[_ngcontent-%COMP%]{font-size:14px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:500;height:35px;line-height:normal;margin:10px 0;min-width:75px;padding:0 8px;position:relative}.loading[_ngcontent-%COMP%]{bottom:0;left:0;margin:0 auto;position:absolute;right:0;top:45%}.mat-dialog-actions[_ngcontent-%COMP%]{padding:0!important}  .feedbackDialog .mat-dialog-container{background-color:hsla(0,0%,100%,0);box-shadow:none;overflow:visible;padding:0}.toolbar-tips[_ngcontent-%COMP%]{-webkit-animation:cssAnimation 0s ease-in 5s forwards;-webkit-animation-fill-mode:forwards;animation:cssAnimation 0s ease-in 5s forwards;animation-fill-mode:forwards;background-color:hsla(0,0%,100%,.6);border-radius:12px;color:#757575;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size:34px;font-stretch:normal;font-style:normal;font-variant:normal;font-weight:400;height:auto;line-height:40px;margin-bottom:72px;padding:22px 0;text-align:center;visibility:visible;width:656px}@keyframes cssAnimation{to{height:0;overflow:hidden;width:0}}@-webkit-keyframes cssAnimation{to{height:0;visibility:hidden;width:0}}.drawCanvas[_ngcontent-%COMP%]{cursor:crosshair;left:0;margin:0 auto;position:absolute;top:0;z-index:-1}.pointerCursor[_ngcontent-%COMP%]{cursor:default!important}"] });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FeedbackDialogComponent, [{
                 type: i0.Component,
                 args: [{
                         selector: 'feedback-dialog',
@@ -859,8 +861,8 @@
                 i0.ɵɵlistener("click", function FeedbackDirective_click_HostBindingHandler() { return ctx.onClick(); });
             }
         }, inputs: { title: "title", placeholder: "placeholder", editTip: "editTip", checkboxLabel: "checkboxLabel", cancelLabel: "cancelLabel", sendLabel: "sendLabel", moveToolbarTip: "moveToolbarTip", drawRectTip: "drawRectTip", highlightTip: "highlightTip", hideTip: "hideTip", editDoneLabel: "editDoneLabel" }, outputs: { send: "send" } });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(FeedbackDirective, [{
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FeedbackDirective, [{
                 type: i0.Directive,
                 args: [{ selector: '[feedback]' }]
             }], function () { return [{ type: i1.MatDialog }, { type: FeedbackService }, { type: i3$1.Overlay }]; }, { title: [{
@@ -903,12 +905,12 @@
             FeedbackService
         ], imports: [[
                 i1.MatDialogModule,
-                i4$1.MatButtonModule,
+                i4.MatButtonModule,
                 icon.MatIconModule,
                 input.MatInputModule,
                 i2.MatTooltipModule,
                 i3.CommonModule,
-                i4.FormsModule,
+                i4$1.FormsModule,
                 i5.MatCheckboxModule,
                 i7.MatProgressSpinnerModule
             ]] });
@@ -917,17 +919,17 @@
                 FeedbackToolbarComponent,
                 FeedbackRectangleComponent,
                 FeedbackDirective], imports: [i1.MatDialogModule,
-                i4$1.MatButtonModule,
+                i4.MatButtonModule,
                 icon.MatIconModule,
                 input.MatInputModule,
                 i2.MatTooltipModule,
                 i3.CommonModule,
-                i4.FormsModule,
+                i4$1.FormsModule,
                 i5.MatCheckboxModule,
                 i7.MatProgressSpinnerModule], exports: [FeedbackDirective] });
     })();
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(FeedbackModule, [{
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FeedbackModule, [{
                 type: i0.NgModule,
                 args: [{
                         declarations: [
@@ -938,12 +940,12 @@
                         ],
                         imports: [
                             i1.MatDialogModule,
-                            i4$1.MatButtonModule,
+                            i4.MatButtonModule,
                             icon.MatIconModule,
                             input.MatInputModule,
                             i2.MatTooltipModule,
                             i3.CommonModule,
-                            i4.FormsModule,
+                            i4$1.FormsModule,
                             i5.MatCheckboxModule,
                             i7.MatProgressSpinnerModule
                         ],

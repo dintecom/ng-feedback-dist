@@ -15,3 +15,4 @@ export declare class FeedbackRectangleComponent {
     static ɵfac: i0.ɵɵFactoryDef<FeedbackRectangleComponent, never>;
     static ɵcmp: i0.ɵɵComponentDefWithMeta<FeedbackRectangleComponent, "feedback-rectangle", never, { "rectangle": "rectangle"; "noHover": "noHover"; }, { "close": "close"; }, never, never>;
 }
+//# sourceMappingURL=feedback-rectangle.component.d.ts.map

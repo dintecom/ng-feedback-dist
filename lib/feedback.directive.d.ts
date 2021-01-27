@@ -27,3 +27,4 @@ export declare class FeedbackDirective implements OnInit {
     static ɵfac: i0.ɵɵFactoryDef<FeedbackDirective, never>;
     static ɵdir: i0.ɵɵDirectiveDefWithMeta<FeedbackDirective, "[feedback]", never, { "title": "title"; "placeholder": "placeholder"; "editTip": "editTip"; "checkboxLabel": "checkboxLabel"; "cancelLabel": "cancelLabel"; "sendLabel": "sendLabel"; "moveToolbarTip": "moveToolbarTip"; "drawRectTip": "drawRectTip"; "highlightTip": "highlightTip"; "hideTip": "hideTip"; "editDoneLabel": "editDoneLabel"; }, { "send": "send"; }, never>;
 }
+//# sourceMappingURL=feedback.directive.d.ts.map
