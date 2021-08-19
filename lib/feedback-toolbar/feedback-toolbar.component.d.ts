@@ -18,7 +18,6 @@ export declare class FeedbackToolbarComponent implements AfterViewInit, OnChange
     toggleHighlight(): void;
     toggleHide(): void;
     addDragListenerOnMoveBtn(): void;
-    static ɵfac: i0.ɵɵFactoryDef<FeedbackToolbarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<FeedbackToolbarComponent, "feedback-toolbar", never, { "drawColor": "drawColor"; }, { "manipulate": "manipulate"; }, never, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FeedbackToolbarComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FeedbackToolbarComponent, "feedback-toolbar", never, { "drawColor": "drawColor"; }, { "manipulate": "manipulate"; }, never, never>;
 }
-//# sourceMappingURL=feedback-toolbar.component.d.ts.map

@@ -12,7 +12,6 @@ export declare class FeedbackRectangleComponent {
     onMouseEnter(): void;
     onMouseLeave(): void;
     onClose(): void;
-    static ɵfac: i0.ɵɵFactoryDef<FeedbackRectangleComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<FeedbackRectangleComponent, "feedback-rectangle", never, { "rectangle": "rectangle"; "noHover": "noHover"; }, { "close": "close"; }, never, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FeedbackRectangleComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FeedbackRectangleComponent, "feedback-rectangle", never, { "rectangle": "rectangle"; "noHover": "noHover"; }, { "close": "close"; }, never, never>;
 }
-//# sourceMappingURL=feedback-rectangle.component.d.ts.map

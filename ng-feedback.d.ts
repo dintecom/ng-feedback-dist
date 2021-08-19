@@ -3,4 +3,3 @@
  */
 /// <amd-module name="ng-feedback" />
 export * from './public_api';
-//# sourceMappingURL=ng-feedback.d.ts.map

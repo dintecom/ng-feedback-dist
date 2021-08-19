@@ -18,7 +18,6 @@ export declare class FeedbackService {
     getImgEle(canvas: any): HTMLElement;
     hideBackDrop(): void;
     showBackDrop(): void;
-    static ɵfac: i0.ɵɵFactoryDef<FeedbackService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<FeedbackService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FeedbackService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<FeedbackService>;
 }
-//# sourceMappingURL=feedback.service.d.ts.map

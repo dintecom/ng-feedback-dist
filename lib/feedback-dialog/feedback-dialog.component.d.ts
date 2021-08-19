@@ -46,7 +46,6 @@ export declare class FeedbackDialogComponent implements AfterViewInit {
     private drawTempCanvasRectangle;
     closeRect(index: number): void;
     private isExcludeRect;
-    static ɵfac: i0.ɵɵFactoryDef<FeedbackDialogComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<FeedbackDialogComponent, "feedback-dialog", never, {}, {}, never, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FeedbackDialogComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FeedbackDialogComponent, "feedback-dialog", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=feedback-dialog.component.d.ts.map
